@@ -1,0 +1,29 @@
+scripts/merge_into_published.py
+  s_37cba2fa9fa5ef::t_dfe9121d87b01d 1-29
+scripts/publish.sh
+  s_37cba2fa9fa5ef::t_25166d6c304d0d 1-35
+scripts/readme.py
+  s_37cba2fa9fa5ef::t_e9a7f07b131899 1-31
+scripts/replay.sh
+  s_37cba2fa9fa5ef::t_a1c13172445084 1-20
+scripts/score.sh
+  s_37cba2fa9fa5ef::t_94c273c1a46de8 1-22
+scripts/summarize.py
+  s_37cba2fa9fa5ef::t_c613a0006f7777 1-28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "10739e256bff904c779254f51db531c723d103bf",
+  "prompts": {},
+  "sessions": {
+    "s_37cba2fa9fa5ef": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "9af93e4f-e825-49f6-8c8f-82466dc64949",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Sayli Kadam <sayliadam16@gmail.com>"
+    }
+  }
+}
