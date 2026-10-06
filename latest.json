@@ -1,0 +1,21 @@
+{
+  "placeholder": true,
+  "status": "run in progress: reviews running on the production Angada bot; scoring starts when all 50 reviews finish",
+  "updated_at": "2026-10-06T06:07Z",
+  "tool": "angada-2026-10",
+  "progress": {
+    "prs_total": 50,
+    "reviews_published": 34,
+    "reviews_failed_or_partial": 8,
+    "reviews_in_flight": 0
+  },
+  "judge": "anthropic_claude-opus-4-5-20251101",
+  "judge_via": "OpenRouter anthropic/claude-opus-4.5",
+  "profile": "core",
+  "beta": 2.0,
+  "harness_commit": "e616e84",
+  "competitor_source": "https://codereview.withmartian.com/benchmark_dashboard.json",
+  "results_repo": "https://github.com/angada-bench/results",
+  "prs_org": "https://github.com/angada-bench",
+  "rows": []
+}
