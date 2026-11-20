@@ -6,18 +6,18 @@ These are our own runs, not Martian's, and not an official leaderboard entry. Ma
 
 ## Results
 
-| Run | Date | Verifier | Hits of 158 | Wrong | Precision | Recall | F1 | F2 | Reviews not completed (of 50) |
-|---|---|---|---|---|---|---|---|---|---|
-| 1 | 20 Nov 2026 | on | 96 | 205 | .319 | .608 | .418 | .514 | 2 |
-| 2 | 20 Nov 2026 | on | 87 | 193 | .311 | .551 | .397 | .477 | 5 |
-| 3 | 20 Nov 2026 | on | 100 | 187 | .348 | .633 | .449 | .544 | 3 |
-| 4 | 20 Nov 2026 | on | 89 | 195 | .313 | .563 | .403 | .486 | 3 |
-| 5 | 20 Nov 2026 | off | 101 | 311 | .245 | .639 | .354 | .484 | 2 |
-| 6 | 20 Nov 2026 | off | 93 | 284 | .247 | .589 | .348 | .461 | 5 |
-| 7 | 20 Nov 2026 | off | 101 | 286 | .261 | .639 | .371 | .496 | 3 |
-| 8 | 20 Nov 2026 | off | 102 | 281 | .266 | .646 | .377 | .502 | 3 |
-| **Mean, verifier on** | | | **93.0** | **195.0** | **.323** | **.589** | **.417** | **.505** | |
-| **Mean, verifier off** | | | **99.3** | **290.5** | **.255** | **.628** | **.362** | **.486** | |
+| Run | Date | Verifier | Hits of 158 | Wrong | Precision | Recall | F1 | F2 |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 20 Nov 2026 | on | 96 | 205 | .319 | .608 | .418 | .514 |
+| 2 | 20 Nov 2026 | on | 87 | 193 | .311 | .551 | .397 | .477 |
+| 3 | 20 Nov 2026 | on | 100 | 187 | .348 | .633 | .449 | .544 |
+| 4 | 20 Nov 2026 | on | 89 | 195 | .313 | .563 | .403 | .486 |
+| 5 | 20 Nov 2026 | off | 101 | 311 | .245 | .639 | .354 | .484 |
+| 6 | 20 Nov 2026 | off | 93 | 284 | .247 | .589 | .348 | .461 |
+| 7 | 20 Nov 2026 | off | 101 | 286 | .261 | .639 | .371 | .496 |
+| 8 | 20 Nov 2026 | off | 102 | 281 | .266 | .646 | .377 | .502 |
+| **Mean, verifier on** | | | **93.0** | **195.0** | **.323** | **.589** | **.417** | **.505** |
+| **Mean, verifier off** | | | **99.3** | **290.5** | **.255** | **.628** | **.362** | **.486** |
 
 The number we quote is the verifier-on mean: F2 .505 (sd .030, range .477 to .544). Two runs of the same configuration differed by .067, so we do not quote any single run. On Martian's board (Core set, same judge model) that mean would sit 12th of 21 rows. The board rows are single runs that Martian made itself.
 

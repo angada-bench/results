@@ -208,18 +208,18 @@ def day(iso):
 
 
 def results_table(doc, extra):
-    out = ["| Run | Date | Verifier | Hits of 158 | Wrong | Precision | Recall | F1 | F2 | Reviews not completed (of 50) |",
-           "|---|---|---|---|---|---|---|---|---|---|"]
+    out = ["| Run | Date | Verifier | Hits of 158 | Wrong | Precision | Recall | F1 | F2 |",
+           "|---|---|---|---|---|---|---|---|---|"]
     for r in doc["runs"]:
         out.append(f"| {r['run']} | {day(extra[r['run']]['date'])} | {r['arm']} | {r['tp']} | {r['fp']} | {frac(r['precision'])} | "
-                   f"{frac(r['recall'])} | {frac(r['f1'])} | {frac(r['f2'])} | {r['not_completed']} |")
+                   f"{frac(r['recall'])} | {frac(r['f1'])} | {frac(r['f2'])} |")
     for arm in ("on", "off"):
         ms = [r for r in doc["runs"] if r["arm"] == arm]
         if not ms:
             continue
         mean = lambda k: statistics.mean(r[k] for r in ms)
         out.append(f"| **Mean, verifier {arm}** | | | **{one(mean('tp'))}** | **{one(mean('fp'))}** | **{frac(mean('precision'))}** | "
-                   f"**{frac(mean('recall'))}** | **{frac(mean('f1'))}** | **{frac(mean('f2'))}** | |")
+                   f"**{frac(mean('recall'))}** | **{frac(mean('f1'))}** | **{frac(mean('f2'))}** |")
     return out
 
 
