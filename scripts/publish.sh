@@ -7,9 +7,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 HARNESS="${HARNESS:-$HOME/martian-bench/code-review-benchmark/offline}"
 python3 "$SCRIPT_DIR/summarize.py" "$OUT" "$TOOL" | tee "$OUT/scoreboard.txt"
-if [ -n "${PROD_DATABASE_DSN:-}" ]; then
-  psql "$PROD_DATABASE_DSN" -X --csv -c "SELECT r.id, p.repo_full_name, r.head_sha, r.outcome, r.outcome_reason, r.route_tier, r.cost_llm_usd, r.engine_version, r.created_at, r.updated_at, extract(epoch FROM r.updated_at - r.created_at)::int AS wall_s FROM review_runs r JOIN pull_requests p ON p.id = r.pr_id WHERE r.workspace_id = 'ws_01M46RKQW6T8FF6RHTHN1X8Z2N' AND p.repo_full_name LIKE '%\_\_${TOOL}\_\_PR%' ORDER BY r.created_at" > "$OUT/review_runs.csv" || echo "review_runs export failed"
-fi
 cat > "$OUT/manifest.json" <<JSON
 {
   "run_id": "$RUN_ID",
