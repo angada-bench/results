@@ -1,0 +1,23 @@
+scripts/aggregate.py
+  s_a3d490f07f1a26::t_b4045501d521db 222
+  s_a3d490f07f1a26::t_0bf852808b7346 211-212
+  s_a3d490f07f1a26::t_b708ab07a43104 215
+README.md
+  s_a3d490f07f1a26::t_701620f0b78176 9-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6b09f275460fac061a5ed1703e0fc31af8baa04b",
+  "prompts": {},
+  "sessions": {
+    "s_a3d490f07f1a26": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "dce40130-5721-4848-8a41-7af324378cae",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Kaustav Chakraborty <me@iamkaustav.com>"
+    }
+  }
+}
