@@ -1,0 +1,125 @@
+scripts/aggregate.py
+  s_a3d490f07f1a26::t_4b83f71951d664 1-225
+README.md
+  s_a3d490f07f1a26::t_56ac4368abff61 3,5,7-114,118-130
+campaigns/2026-11-20-baseline/REPORT.md
+  s_a3d490f07f1a26::t_03d6dae422c46a 1-125
+campaigns/2026-11-20-baseline/leaderboard.json
+  s_a3d490f07f1a26::t_49ddb39652cb86 1-210
+campaigns/2026-11-20-baseline/report.json
+  s_a3d490f07f1a26::t_171994c580749c 1-523
+campaigns/2026-11-20-baseline/runs/off-g1/benchmark_data.json
+  s_a3d490f07f1a26::t_36e44afc76d98e 1-4482
+campaigns/2026-11-20-baseline/runs/off-g1/candidates.json
+  s_a3d490f07f1a26::t_2dce615ef71a75 1-3039
+campaigns/2026-11-20-baseline/runs/off-g1/dedup_groups.json
+  s_a3d490f07f1a26::t_571c4f335223e4 1-1375
+campaigns/2026-11-20-baseline/runs/off-g1/evaluations.json
+  s_a3d490f07f1a26::t_c8880b7829481e 1-3247
+campaigns/2026-11-20-baseline/runs/off-g1/manifest.json
+  s_a3d490f07f1a26::t_c3e42fc4de634a 1-54
+campaigns/2026-11-20-baseline/runs/off-g1/scores.json
+  s_a3d490f07f1a26::t_6a6eb42de5d9f9 1-466
+campaigns/2026-11-20-baseline/runs/off-g2/benchmark_data.json
+  s_a3d490f07f1a26::t_9d56abbb08a2e4 1-4252
+campaigns/2026-11-20-baseline/runs/off-g2/candidates.json
+  s_a3d490f07f1a26::t_bb877326b2afd3 1-2771
+campaigns/2026-11-20-baseline/runs/off-g2/dedup_groups.json
+  s_a3d490f07f1a26::t_d616f51a9c7dd8 1-1267
+campaigns/2026-11-20-baseline/runs/off-g2/evaluations.json
+  s_a3d490f07f1a26::t_7a1cc19e61170a 1-3128
+campaigns/2026-11-20-baseline/runs/off-g2/manifest.json
+  s_a3d490f07f1a26::t_728b4acf2b9624 1-64
+campaigns/2026-11-20-baseline/runs/off-g2/scores.json
+  s_a3d490f07f1a26::t_ba3975290c65a3 1-466
+campaigns/2026-11-20-baseline/runs/off-g3/benchmark_data.json
+  s_a3d490f07f1a26::t_03407c08a3a69c 1-4372
+campaigns/2026-11-20-baseline/runs/off-g3/candidates.json
+  s_a3d490f07f1a26::t_714d5490d13ba2 1-2871
+campaigns/2026-11-20-baseline/runs/off-g3/dedup_groups.json
+  s_a3d490f07f1a26::t_b57851bb7d8495 1-1318
+campaigns/2026-11-20-baseline/runs/off-g3/evaluations.json
+  s_a3d490f07f1a26::t_663d607291dc2b 1-3166
+campaigns/2026-11-20-baseline/runs/off-g3/manifest.json
+  s_a3d490f07f1a26::t_e11f65f4212966 1-57
+campaigns/2026-11-20-baseline/runs/off-g3/scores.json
+  s_a3d490f07f1a26::t_e403ab0edd0195 1-466
+campaigns/2026-11-20-baseline/runs/off-g4/benchmark_data.json
+  s_a3d490f07f1a26::t_f7ec16c2039e8f 1-4262
+campaigns/2026-11-20-baseline/runs/off-g4/candidates.json
+  s_a3d490f07f1a26::t_545c6c2d0a4fde 1-2756
+campaigns/2026-11-20-baseline/runs/off-g4/dedup_groups.json
+  s_a3d490f07f1a26::t_7c2b2e5db4180d 1-1281
+campaigns/2026-11-20-baseline/runs/off-g4/evaluations.json
+  s_a3d490f07f1a26::t_ee0a3f724afcf1 1-3155
+campaigns/2026-11-20-baseline/runs/off-g4/manifest.json
+  s_a3d490f07f1a26::t_fbf3985da5a292 1-57
+campaigns/2026-11-20-baseline/runs/off-g4/scores.json
+  s_a3d490f07f1a26::t_979ac12418f331 1-466
+campaigns/2026-11-20-baseline/runs/on-g1/benchmark_data.json
+  s_a3d490f07f1a26::t_b40594f5cb0c2c 1-3532
+campaigns/2026-11-20-baseline/runs/on-g1/candidates.json
+  s_a3d490f07f1a26::t_6a855f3a888f5f 1-2066
+campaigns/2026-11-20-baseline/runs/on-g1/dedup_groups.json
+  s_a3d490f07f1a26::t_c9a06d7a38c242 1-1049
+campaigns/2026-11-20-baseline/runs/on-g1/evaluations.json
+  s_a3d490f07f1a26::t_a64571d379a600 1-2907
+campaigns/2026-11-20-baseline/runs/on-g1/manifest.json
+  s_a3d490f07f1a26::t_40f6aff8b53523 1-49
+campaigns/2026-11-20-baseline/runs/on-g1/scores.json
+  s_a3d490f07f1a26::t_e5ae44e39367ca 1-466
+campaigns/2026-11-20-baseline/runs/on-g2/benchmark_data.json
+  s_a3d490f07f1a26::t_be4e121defa25b 1-3442
+campaigns/2026-11-20-baseline/runs/on-g2/candidates.json
+  s_a3d490f07f1a26::t_79dadab7f23e48 1-1943
+campaigns/2026-11-20-baseline/runs/on-g2/dedup_groups.json
+  s_a3d490f07f1a26::t_d9d73a06b85354 1-966
+campaigns/2026-11-20-baseline/runs/on-g2/evaluations.json
+  s_a3d490f07f1a26::t_331fe0e8800f71 1-2835
+campaigns/2026-11-20-baseline/runs/on-g2/manifest.json
+  s_a3d490f07f1a26::t_7c6fd167383c2d 1-52
+campaigns/2026-11-20-baseline/runs/on-g2/scores.json
+  s_a3d490f07f1a26::t_789c788f528e14 1-466
+campaigns/2026-11-20-baseline/runs/on-g3/benchmark_data.json
+  s_a3d490f07f1a26::t_5e6ed480587774 1-3462
+campaigns/2026-11-20-baseline/runs/on-g3/candidates.json
+  s_a3d490f07f1a26::t_8a5b68fd3023ff 1-1971
+campaigns/2026-11-20-baseline/runs/on-g3/dedup_groups.json
+  s_a3d490f07f1a26::t_5cc1ae859dc41e 1-1035
+campaigns/2026-11-20-baseline/runs/on-g3/evaluations.json
+  s_a3d490f07f1a26::t_9a7072e63c10dc 1-2864
+campaigns/2026-11-20-baseline/runs/on-g3/manifest.json
+  s_a3d490f07f1a26::t_d1bb4422148868 1-50
+campaigns/2026-11-20-baseline/runs/on-g3/scores.json
+  s_a3d490f07f1a26::t_e0bea628100540 1-466
+campaigns/2026-11-20-baseline/runs/on-g4/benchmark_data.json
+  s_a3d490f07f1a26::t_fc033e6d20b9bf 1-3437
+campaigns/2026-11-20-baseline/runs/on-g4/candidates.json
+  s_a3d490f07f1a26::t_41b8d25e3a9fd2 1-1970
+campaigns/2026-11-20-baseline/runs/on-g4/dedup_groups.json
+  s_a3d490f07f1a26::t_c77ca00b576077 1-1007
+campaigns/2026-11-20-baseline/runs/on-g4/evaluations.json
+  s_a3d490f07f1a26::t_db01fe7315889b 1-2858
+campaigns/2026-11-20-baseline/runs/on-g4/manifest.json
+  s_a3d490f07f1a26::t_f0d03fb397da94 1-50
+campaigns/2026-11-20-baseline/runs/on-g4/scores.json
+  s_a3d490f07f1a26::t_45f69e37d34aa8 1-466
+latest.json
+  s_a3d490f07f1a26::t_451d4fc08c55cc 2-10,14-59,61-209
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "6cdde43572be78dcaabbcf2c39a7e4dacf20f642",
+  "prompts": {},
+  "sessions": {
+    "s_a3d490f07f1a26": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "dce40130-5721-4848-8a41-7af324378cae",
+        "model": "unknown"
+      },
+      "human_author": "Kaustav Chakraborty <me@iamkaustav.com>"
+    }
+  }
+}
