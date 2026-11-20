@@ -1,0 +1,466 @@
+{
+  "run": "on-g2",
+  "profile": "core",
+  "beta": 2.0,
+  "totals": {
+    "tp": 87,
+    "fp": 193,
+    "fn": 71,
+    "precision": 0.3107,
+    "recall": 0.5506,
+    "f1": 0.3973,
+    "f2": 0.477
+  },
+  "per_pr": {
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/1": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 4,
+      "status": "failed:degraded",
+      "findings": 0,
+      "language": "Ruby",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/10": {
+      "tp": 5,
+      "fp": 8,
+      "fn": 2,
+      "status": "completed",
+      "findings": 16,
+      "language": "Ruby",
+      "size": "large"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/2": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 0,
+      "status": "completed",
+      "findings": 5,
+      "language": "Ruby",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/3": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3,
+      "status": "completed:degraded",
+      "findings": 7,
+      "language": "Ruby",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/4": {
+      "tp": 5,
+      "fp": 15,
+      "fn": 3,
+      "status": "completed",
+      "findings": 22,
+      "language": "Ruby",
+      "size": "large"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/5": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 3,
+      "status": "completed",
+      "findings": 2,
+      "language": "Ruby",
+      "size": "small"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/6": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 0,
+      "status": "completed",
+      "findings": 5,
+      "language": "Ruby",
+      "size": "small"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/7": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "status": "completed:degraded",
+      "findings": 10,
+      "language": "Ruby",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/8": {
+      "tp": 4,
+      "fp": 7,
+      "fn": 2,
+      "status": "completed",
+      "findings": 9,
+      "language": "Ruby",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/9": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 2,
+      "status": "completed",
+      "findings": 3,
+      "language": "Ruby",
+      "size": "small"
+    },
+    "https://github.com/ai-code-review-evaluation/keycloak-greptile/pull/1": {
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "status": "completed",
+      "findings": 3,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/1": {
+      "tp": 3,
+      "fp": 1,
+      "fn": 1,
+      "status": "completed",
+      "findings": 5,
+      "language": "Python",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/2": {
+      "tp": 4,
+      "fp": 7,
+      "fn": 0,
+      "status": "completed",
+      "findings": 9,
+      "language": "Python",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/3": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 2,
+      "status": "completed",
+      "findings": 6,
+      "language": "Python",
+      "size": "medium"
+    },
+    "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/5": {
+      "tp": 3,
+      "fp": 14,
+      "fn": 3,
+      "status": "completed",
+      "findings": 20,
+      "language": "Python",
+      "size": "large"
+    },
+    "https://github.com/calcom/cal.com/pull/10600": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 3,
+      "status": "completed",
+      "findings": 7,
+      "language": "TypeScript",
+      "size": "medium"
+    },
+    "https://github.com/calcom/cal.com/pull/10967": {
+      "tp": 4,
+      "fp": 19,
+      "fn": 1,
+      "status": "completed",
+      "findings": 24,
+      "language": "TypeScript",
+      "size": "large"
+    },
+    "https://github.com/calcom/cal.com/pull/11059": {
+      "tp": 8,
+      "fp": 10,
+      "fn": 1,
+      "status": "completed",
+      "findings": 21,
+      "language": "TypeScript",
+      "size": "large"
+    },
+    "https://github.com/calcom/cal.com/pull/14740": {
+      "tp": 4,
+      "fp": 6,
+      "fn": 2,
+      "status": "completed",
+      "findings": 11,
+      "language": "TypeScript",
+      "size": "large"
+    },
+    "https://github.com/calcom/cal.com/pull/14943": {
+      "tp": 2,
+      "fp": 3,
+      "fn": 0,
+      "status": "completed",
+      "findings": 5,
+      "language": "TypeScript",
+      "size": "small"
+    },
+    "https://github.com/calcom/cal.com/pull/22345": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "status": "completed",
+      "findings": 2,
+      "language": "TypeScript",
+      "size": "small"
+    },
+    "https://github.com/calcom/cal.com/pull/22532": {
+      "tp": 2,
+      "fp": 5,
+      "fn": 2,
+      "status": "completed",
+      "findings": 10,
+      "language": "TypeScript",
+      "size": "medium"
+    },
+    "https://github.com/calcom/cal.com/pull/7232": {
+      "tp": 2,
+      "fp": 7,
+      "fn": 1,
+      "status": "completed",
+      "findings": 10,
+      "language": "TypeScript",
+      "size": "medium"
+    },
+    "https://github.com/calcom/cal.com/pull/8087": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 0,
+      "status": "completed",
+      "findings": 5,
+      "language": "TypeScript",
+      "size": "medium"
+    },
+    "https://github.com/calcom/cal.com/pull/8330": {
+      "tp": 2,
+      "fp": 9,
+      "fn": 0,
+      "status": "completed",
+      "findings": 12,
+      "language": "TypeScript",
+      "size": "small"
+    },
+    "https://github.com/getsentry/sentry/pull/67876": {
+      "tp": 1,
+      "fp": 2,
+      "fn": 2,
+      "status": "completed",
+      "findings": 4,
+      "language": "Python",
+      "size": "small"
+    },
+    "https://github.com/getsentry/sentry/pull/77754": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 1,
+      "status": "completed",
+      "findings": 1,
+      "language": "Python",
+      "size": "medium"
+    },
+    "https://github.com/getsentry/sentry/pull/80168": {
+      "tp": 1,
+      "fp": 1,
+      "fn": 2,
+      "status": "completed",
+      "findings": 3,
+      "language": "Python",
+      "size": "small"
+    },
+    "https://github.com/getsentry/sentry/pull/80528": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "status": "completed:degraded",
+      "findings": 5,
+      "language": "Python",
+      "size": "small"
+    },
+    "https://github.com/getsentry/sentry/pull/93824": {
+      "tp": 2,
+      "fp": 1,
+      "fn": 3,
+      "status": "completed",
+      "findings": 7,
+      "language": "Python",
+      "size": "large"
+    },
+    "https://github.com/getsentry/sentry/pull/95633": {
+      "tp": 1,
+      "fp": 9,
+      "fn": 0,
+      "status": "completed",
+      "findings": 13,
+      "language": "Python",
+      "size": "medium"
+    },
+    "https://github.com/grafana/grafana/pull/103633": {
+      "tp": 1,
+      "fp": 3,
+      "fn": 2,
+      "status": "completed",
+      "findings": 5,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/106778": {
+      "tp": 1,
+      "fp": 6,
+      "fn": 1,
+      "status": "completed",
+      "findings": 9,
+      "language": "Go",
+      "size": "medium"
+    },
+    "https://github.com/grafana/grafana/pull/107534": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "status": "completed",
+      "findings": 1,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/76186": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "status": "completed",
+      "findings": 2,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/79265": {
+      "tp": 3,
+      "fp": 2,
+      "fn": 2,
+      "status": "completed",
+      "findings": 6,
+      "language": "Go",
+      "size": "large"
+    },
+    "https://github.com/grafana/grafana/pull/80329": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 0,
+      "status": "completed",
+      "findings": 4,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/90045": {
+      "tp": 1,
+      "fp": 4,
+      "fn": 2,
+      "status": "completed",
+      "findings": 6,
+      "language": "Go",
+      "size": "medium"
+    },
+    "https://github.com/grafana/grafana/pull/90939": {
+      "tp": 1,
+      "fp": 0,
+      "fn": 1,
+      "status": "completed",
+      "findings": 1,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/94942": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "status": "completed",
+      "findings": 2,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/grafana/grafana/pull/97529": {
+      "tp": 2,
+      "fp": 3,
+      "fn": 0,
+      "status": "completed",
+      "findings": 5,
+      "language": "Go",
+      "size": "small"
+    },
+    "https://github.com/keycloak/keycloak/pull/32918": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "status": "completed",
+      "findings": 2,
+      "language": "Java",
+      "size": "small"
+    },
+    "https://github.com/keycloak/keycloak/pull/33832": {
+      "tp": 1,
+      "fp": 7,
+      "fn": 2,
+      "status": "completed",
+      "findings": 8,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/keycloak/keycloak/pull/36880": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "status": "completed",
+      "findings": 5,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/keycloak/keycloak/pull/36882": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "status": "completed",
+      "findings": 1,
+      "language": "Java",
+      "size": "small"
+    },
+    "https://github.com/keycloak/keycloak/pull/37038": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 0,
+      "status": "partial:degraded",
+      "findings": 4,
+      "language": "Java",
+      "size": "small"
+    },
+    "https://github.com/keycloak/keycloak/pull/37429": {
+      "tp": 1,
+      "fp": 5,
+      "fn": 2,
+      "status": "completed",
+      "findings": 8,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/keycloak/keycloak/pull/37634": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 2,
+      "status": "completed",
+      "findings": 5,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/keycloak/keycloak/pull/38446": {
+      "tp": 0,
+      "fp": 5,
+      "fn": 2,
+      "status": "completed",
+      "findings": 5,
+      "language": "Java",
+      "size": "medium"
+    },
+    "https://github.com/keycloak/keycloak/pull/40940": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "status": "completed",
+      "findings": 3,
+      "language": "Java",
+      "size": "small"
+    }
+  }
+}

@@ -1,0 +1,523 @@
+{
+  "schema": "angada-bench.campaign/v1",
+  "campaign": "2026-11-20-baseline",
+  "profile": "core",
+  "beta": 2.0,
+  "runs": [
+    {
+      "run": "on-g1",
+      "arm": "on",
+      "generation": "g1",
+      "prs": 50,
+      "tp": 96,
+      "fp": 205,
+      "fn": 62,
+      "precision": 0.31893687707641194,
+      "recall": 0.6075949367088608,
+      "f1": 0.4183006535947712,
+      "f2": 0.5144694533762058,
+      "not_completed": 2,
+      "derived_from": null
+    },
+    {
+      "run": "on-g2",
+      "arm": "on",
+      "generation": "g2",
+      "prs": 50,
+      "tp": 87,
+      "fp": 193,
+      "fn": 71,
+      "precision": 0.3107142857142857,
+      "recall": 0.5506329113924051,
+      "f1": 0.3972602739726027,
+      "f2": 0.4769736842105263,
+      "not_completed": 5,
+      "derived_from": null
+    },
+    {
+      "run": "on-g3",
+      "arm": "on",
+      "generation": "g3",
+      "prs": 50,
+      "tp": 100,
+      "fp": 187,
+      "fn": 58,
+      "precision": 0.34843205574912894,
+      "recall": 0.6329113924050633,
+      "f1": 0.44943820224719105,
+      "f2": 0.5440696409140371,
+      "not_completed": 3,
+      "derived_from": null
+    },
+    {
+      "run": "on-g4",
+      "arm": "on",
+      "generation": "g4",
+      "prs": 50,
+      "tp": 89,
+      "fp": 195,
+      "fn": 69,
+      "precision": 0.31338028169014087,
+      "recall": 0.5632911392405063,
+      "f1": 0.40271493212669685,
+      "f2": 0.4858078602620088,
+      "not_completed": 3,
+      "derived_from": null
+    },
+    {
+      "run": "off-g1",
+      "arm": "off",
+      "generation": "g1",
+      "prs": 50,
+      "tp": 101,
+      "fp": 311,
+      "fn": 57,
+      "precision": 0.24514563106796117,
+      "recall": 0.6392405063291139,
+      "f1": 0.3543859649122807,
+      "f2": 0.48371647509578547,
+      "not_completed": 2,
+      "derived_from": "on-g1"
+    },
+    {
+      "run": "off-g2",
+      "arm": "off",
+      "generation": "g2",
+      "prs": 50,
+      "tp": 93,
+      "fp": 284,
+      "fn": 65,
+      "precision": 0.246684350132626,
+      "recall": 0.5886075949367089,
+      "f1": 0.34766355140186916,
+      "f2": 0.4608523290386521,
+      "not_completed": 5,
+      "derived_from": "on-g2"
+    },
+    {
+      "run": "off-g3",
+      "arm": "off",
+      "generation": "g3",
+      "prs": 50,
+      "tp": 101,
+      "fp": 286,
+      "fn": 57,
+      "precision": 0.26098191214470284,
+      "recall": 0.6392405063291139,
+      "f1": 0.37064220183486235,
+      "f2": 0.4955839057899901,
+      "not_completed": 3,
+      "derived_from": "on-g3"
+    },
+    {
+      "run": "off-g4",
+      "arm": "off",
+      "generation": "g4",
+      "prs": 50,
+      "tp": 102,
+      "fp": 281,
+      "fn": 56,
+      "precision": 0.26631853785900783,
+      "recall": 0.6455696202531646,
+      "f1": 0.37707948243992606,
+      "f2": 0.5024630541871922,
+      "not_completed": 3,
+      "derived_from": "on-g4"
+    }
+  ],
+  "arms": {
+    "on": {
+      "generations": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "prs": 50,
+      "f2": {
+        "mean": 0.5053301596906945,
+        "sd": 0.03038356996341049,
+        "min": 0.4769736842105263,
+        "max": 0.5440696409140371,
+        "n": 4
+      },
+      "precision": {
+        "mean": 0.32286587505749187,
+        "sd": 0.01738489982129531,
+        "min": 0.3107142857142857,
+        "max": 0.34843205574912894,
+        "n": 4
+      },
+      "recall": {
+        "mean": 0.5886075949367089,
+        "sd": 0.03832468802655053,
+        "min": 0.5506329113924051,
+        "max": 0.6329113924050633,
+        "n": 4
+      },
+      "tp_mean": 93,
+      "fp_mean": 195,
+      "fn_mean": 65,
+      "pooled": {
+        "tp": 372,
+        "fp": 780,
+        "fn": 260,
+        "precision": 0.3229166666666667,
+        "recall": 0.5886075949367089,
+        "f1": 0.4170403587443946,
+        "f2": 0.5054347826086957
+      },
+      "pooled_f2_bootstrap": {
+        "mean": 0.5048665970711463,
+        "ci95": [
+          0.45204726573234405,
+          0.5584319526627218
+        ],
+        "share_le_0": 0.0,
+        "resamples": 10000,
+        "seed": 1237
+      }
+    },
+    "off": {
+      "generations": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
+      "prs": 50,
+      "f2": {
+        "mean": 0.48565394102790493,
+        "sd": 0.018257639651038785,
+        "min": 0.4608523290386521,
+        "max": 0.5024630541871922,
+        "n": 4
+      },
+      "precision": {
+        "mean": 0.2547826078010745,
+        "sd": 0.010487487059437575,
+        "min": 0.24514563106796117,
+        "max": 0.26631853785900783,
+        "n": 4
+      },
+      "recall": {
+        "mean": 0.6281645569620253,
+        "sd": 0.02653954773293062,
+        "min": 0.5886075949367089,
+        "max": 0.6455696202531646,
+        "n": 4
+      },
+      "tp_mean": 99.25,
+      "fp_mean": 290.5,
+      "fn_mean": 58.75,
+      "pooled": {
+        "tp": 397,
+        "fp": 1162,
+        "fn": 235,
+        "precision": 0.25465041693393203,
+        "recall": 0.6281645569620253,
+        "f1": 0.3623916020082154,
+        "f2": 0.485686322485931
+      },
+      "pooled_f2_bootstrap": {
+        "mean": 0.4851948985871566,
+        "ci95": [
+          0.4357732839646824,
+          0.5341765339074273
+        ],
+        "share_le_0": 0.0,
+        "resamples": 10000,
+        "seed": 1237
+      }
+    }
+  },
+  "on_minus_off": {
+    "generations": [
+      "g1",
+      "g2",
+      "g3",
+      "g4"
+    ],
+    "prs": 50,
+    "pooled_delta_f2": 0.019748460122764655,
+    "bootstrap": {
+      "mean": 0.01967169848398969,
+      "ci95": [
+        -0.0005384484243679544,
+        0.03947217001035708
+      ],
+      "share_le_0": 0.0273,
+      "resamples": 10000,
+      "seed": 1237
+    },
+    "per_generation": {
+      "g1": 0.030752978280420284,
+      "g2": 0.01612135517187424,
+      "g3": 0.04848573512404697,
+      "g4": -0.016655193925183387
+    }
+  },
+  "coverage": {
+    "on": {
+      "core_goldens": 158,
+      "hit_in_k_runs": {
+        "0": 39,
+        "1": 18,
+        "2": 13,
+        "3": 24,
+        "4": 64
+      },
+      "hit_in_any_run": 119
+    },
+    "off": {
+      "core_goldens": 158,
+      "hit_in_k_runs": {
+        "0": 37,
+        "1": 17,
+        "2": 8,
+        "3": 20,
+        "4": 76
+      },
+      "hit_in_any_run": 121
+    }
+  },
+  "leaderboard": {
+    "source": "offline/analysis/benchmark_dashboard.json in https://github.com/withmartian/code-review-benchmark at commit e616e849755441da38f18bf3adba2c9583b03803",
+    "judge": "anthropic_claude-opus-4-5-20251101",
+    "rows": [
+      {
+        "tool": "Qodo Extended",
+        "f2": 65.1,
+        "precision": 67.1,
+        "recall": 64.6,
+        "tp": 102,
+        "fp": 50,
+        "fn": 56,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Cubic v2",
+        "f2": 64.9,
+        "precision": 61.5,
+        "recall": 65.8,
+        "tp": 104,
+        "fp": 65,
+        "fn": 54,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Augment",
+        "f2": 64.0,
+        "precision": 59.5,
+        "recall": 65.2,
+        "tp": 103,
+        "fp": 70,
+        "fn": 55,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Qodo v2",
+        "f2": 60.6,
+        "precision": 55.4,
+        "recall": 62.0,
+        "tp": 98,
+        "fp": 79,
+        "fn": 60,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "copilot-v2",
+        "f2": 58.0,
+        "precision": 38.5,
+        "recall": 66.5,
+        "tp": 105,
+        "fp": 168,
+        "fn": 53,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Gemini",
+        "f2": 52.8,
+        "precision": 45.3,
+        "recall": 55.1,
+        "tp": 87,
+        "fp": 105,
+        "fn": 71,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "GitLab Duo Code Review",
+        "f2": 52.7,
+        "precision": 53.5,
+        "recall": 52.5,
+        "tp": 83,
+        "fp": 72,
+        "fn": 75,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Sourcery",
+        "f2": 51.5,
+        "precision": 41.0,
+        "recall": 55.1,
+        "tp": 87,
+        "fp": 125,
+        "fn": 71,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Greptile v4",
+        "f2": 51.2,
+        "precision": 50.9,
+        "recall": 51.3,
+        "tp": 81,
+        "fp": 78,
+        "fn": 77,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "CodeRabbit",
+        "f2": 51.1,
+        "precision": 32.6,
+        "recall": 59.5,
+        "tp": 94,
+        "fp": 194,
+        "fn": 64,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Macroscope",
+        "f2": 50.8,
+        "precision": 61.1,
+        "recall": 48.7,
+        "tp": 77,
+        "fp": 49,
+        "fn": 81,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Angada, verifier on, mean of 4 self-runs",
+        "f2": 50.53301596906945,
+        "precision": 32.28658750574919,
+        "recall": 58.86075949367089,
+        "tp": 93,
+        "fp": 195,
+        "fn": 65,
+        "prs": 50,
+        "self_run": true
+      },
+      {
+        "tool": "Cursor Bugbot",
+        "f2": 48.6,
+        "precision": 56.9,
+        "recall": 46.8,
+        "tp": 74,
+        "fp": 56,
+        "fn": 84,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Claude Code (CLI)",
+        "f2": 47.7,
+        "precision": 46.3,
+        "recall": 48.1,
+        "tp": 76,
+        "fp": 88,
+        "fn": 82,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Devin",
+        "f2": 44.8,
+        "precision": 69.1,
+        "recall": 41.1,
+        "tp": 65,
+        "fp": 29,
+        "fn": 93,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Kodus",
+        "f2": 41.5,
+        "precision": 59.2,
+        "recall": 38.6,
+        "tp": 61,
+        "fp": 42,
+        "fn": 97,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "CodeAnt",
+        "f2": 40.9,
+        "precision": 40.1,
+        "recall": 41.1,
+        "tp": 65,
+        "fp": 97,
+        "fn": 93,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Baz",
+        "f2": 40.5,
+        "precision": 61.5,
+        "recall": 37.3,
+        "tp": 59,
+        "fp": 37,
+        "fn": 99,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Claude Code",
+        "f2": 38.9,
+        "precision": 43.2,
+        "recall": 38.0,
+        "tp": 60,
+        "fp": 79,
+        "fn": 98,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "KG",
+        "f2": 18.4,
+        "precision": 54.3,
+        "recall": 15.8,
+        "tp": 25,
+        "fp": 21,
+        "fn": 133,
+        "prs": 50,
+        "self_run": false
+      },
+      {
+        "tool": "Graphite",
+        "f2": 9.3,
+        "precision": 100.0,
+        "recall": 7.6,
+        "tp": 12,
+        "fp": 0,
+        "fn": 146,
+        "prs": 50,
+        "self_run": false
+      }
+    ],
+    "rank_of_on_mean": 12,
+    "rows_total": 21
+  }
+}

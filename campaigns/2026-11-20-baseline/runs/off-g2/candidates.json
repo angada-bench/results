@@ -1,0 +1,2771 @@
+{
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/10": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Migration raises when embed_category is unset or does not match a category: the query returns an empty result and [0]['id'] dereferences nil, so upgrades from the default configuration cannot complete. The fallback only handles an id value of zero after a row has already been found; it does not handle the missing-row case.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The migrated host value is interpolated directly into SQL without escaping. A host list entry containing a single quote makes the migration fail and can terminate the statement with arbitrary SQL.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "force: true makes this migration drop embeddable_hosts before recreating it whenever the table already exists. A retry after a partially completed deployment, or an installation with a pre-existing table, destroys all configured host/category rows before the migration can copy any settings.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Migration crashes when site_settings has no 'embed_category' row (any install that never set it, including fresh installs), execute(...)[0]['id'] calls [] on nil and raises NoMethodError. The fallback SELECT value ... 'uncategorized_category_id' has the same problem when that row doesn't exist.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Handle the rejected destroy promise with popupAjaxError (or equivalent) before removing the host from the list. When the DELETE fails, the rejection is left unhandled and the user receives no error feedback, so the UI can remain out of sync with the server.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "This deletes the original *_ids field even when _lookupSubType cannot resolve one or more IDs. Since _lookupSubType explicitly returns undefined when the root response has no matching collection/record, a partial or non-embedded response becomes a relationship containing undefined entries.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "A PUT for a nonexistent :id reaches save_host(nil) and raises NoMethodError when it assigns host.host, returning a 500 instead of the controller's normal not-found response.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When :id does not match a row, host is nil and host.destroy raises NoMethodError. This makes DELETE of an unknown resource return 500 rather than a consistent not-found response.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Missing embeddable_host[host] input causes this assignment to leave host.host nil, and EmbeddableHost's before_validation callback unconditionally calls self.host.sub!. Malformed create/update requests raise NoMethodError and return 500 instead of the normal validation error response.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Submitting an embeddable host without a host value raises NoMethodError during validation instead of returning a validation error. The before_validation callback calls self.host.sub! on nil.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "This comparison lowercases only the stored column, not the parsed host value. Since URI parsing preserves the case of a hostname and the model validation allows uppercase hostnames, EXAMPLE.COM will not match a stored example.com.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The lookup discards the port from the incoming URI (uri.host returns only the hostname), while the validation explicitly permits and the normalization callback preserves :port in the stored value. A host entered as example.com:8080 can be saved but can never match a referer.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "This fixture does not affect expandable_first_post?: the method only checks embed_truncate? and has_topic_embed?, and the latter is stubbed to true in this context. These examples pass even if the embeddable host is not recognized or is unrelated to the topic.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "This test requests fruit 2, but the Pretender fixture for /fruits/:id always returns fruits[0] (id 1). Because this test never asserts f.id, it does not exercise hydration for the requested record.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The expected embedded colors are inconsistent with the requested fruit ID: the fixture defines fruit 2 with color_ids: [3], so a correct response for store.find('fruit', 2) should contain one color (id 3), not two colors (ids 1 and 2).",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Raw SQL interpolation and unnormalized host values in backfill: execute \"INSERT ... VALUES ('#{h}', ...)\" interpolates each line unquoted and unstripped. A trailing \\r or a leading http:// is stored as-is, bypassing the EmbeddableHost before_validation that strips the scheme.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Plural _ids hydration is not null-safe and keeps unresolved entries. If a payload has a null or non-array value, obj[k].map throws. If an id isn't found in the side-loaded collection, _lookupSubType returns undefined, and the array gets undefined entries.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "'false if embeddable_host is blank' test no longer tests that: expandable_first_post? no longer checks hosts. The example passes because of embed_truncate being false by default and has_topic_embed? not being stubbed.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unvalidated category_id and unguarded params nesting: When the request omits embeddable_host or sends a category_id for a nonexistent category, params[:embeddable_host][:host] raises NoMethodError on nil. A bogus category_id is saved unchecked because there is no belongs_to presence validation or foreign key.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/2": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Unsubscribe endpoint toggles back to regular when user is already at muted or regular, causing revisiting the email link to re-enable notifications instead of remaining unsubscribed - should set level to muted",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "TopicUser.find_by can return nil when user has no topic_users row, causing NoMethodError on tu.notification_level and returning a 500 error",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Direct tu.save! bypasses TopicUser.change which publishes notification-level updates and records notifications_reason_id: user_changed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Without notifications_reason_id set, TopicUser.update_last_read can later overwrite the muted/regular choice with auto-tracking based on viewing time",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "State-changing operation is reachable via GET route, allowing mail scanners, link-preview services, or browser prefetching to unintentionally mute or toggle notifications",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The new unsubscribe_url fixture in the spec is never asserted - spec only matches user_preferences_url so it doesn't protect the feature being added",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/3": {
+    "angada-calib-20261120T1416Z-r1": []
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/4": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "The primary Gemfile.lock is not updated with new dependencies (feedjira and ruby-readability gems), causing deployment/CI failures with bundle install --deployment or bundle check",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "RSS items provide body in description rather than content/content:encoded, causing i.content to be nil and raising NoMethodError that aborts the entire hourly poll",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "URL interpolated into HTML attribute without escaping in TopicEmbed, allowing XSS via embed URLs like https://trusted.example/' onmouseover='...",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "open(url) using OpenURI/Kernel open follows redirects and can interpret local/file targets, enabling SSRF to fetch internal services or local files",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Fetched/imported markup stored as raw_html bypasses HTML sanitizer entirely, allowing javascript: links or other active markup to execute as trusted HTML",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Embed view renders post.cooked with raw without sanitization, allowing imported articles with javascript: links to execute in Discourse origin",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Host-only check in TopicRetriever doesn't prevent SSRF via redirects - attacker can provide URL on allowed host that redirects to internal service",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test expectation targets wrong layer - EmbedController#best calls Jobs.enqueue(:retrieve_topic) not TopicRetriever directly, causing test failures",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "TopicView.new expectation returns nil but template calls @topic_view.posts, causing test to fail during view rendering",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "postMessage origin check uses substring match (indexOf) instead of exact equality, allowing untrusted frames to control embed height",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "raw_html cook method returns raw untouched, emitting unsanitized remote HTML containing script tags or onerror handlers",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Malformed <%- end if %> terminator in ERB template causes SyntaxError or wrong condition evaluation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "embed.css and embed.js not in config.assets.precompile list, causing 404 errors in production",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "create_table force: true drops existing table and data when migration is re-run or replayed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Embed script throws on comments.appendChild when discourse-comments element doesn't exist, breaking iframe creation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "TopicEmbed records not removed when topic is deleted, causing stale topic_id lookups to return 404 instead of recreating topic",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Configured feed URL passed directly to Kernel#open allows file:///etc/passwd or redirect-based SSRF",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "absolutize_urls only handles root-relative paths, leaving relative URLs like article/page to resolve against Discourse instead of source",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "request.referer used as postMessage targetOrigin includes path/query, but postMessage requires serialized origin only, breaking iframe height reporting",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Redis throttle key created with setnx and expired separately - failure between commands creates permanent throttle blocking all future retrievals",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Every cache miss runs entire feed poll synchronously, causing repeated downloads when burst of different URLs arrives",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Mock doesn't constrain URL passed to topic_id_for_embed, allowing regressions that pass nil or wrong URL to satisfy expectation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test assertion only distinguishes 2xx from non-2xx, passing if validation regresses into unrelated 500 response",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "No test case with mismatched referer host, allowing cross-site rejection to be removed without test failure",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test doesn't exercise feed_polling_url guard because feed_polling_enabled? defaults to false, short-circuiting before URL check",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "embed_by_username test short-circuits on feed_polling_enabled? == false, never actually testing username validation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Feed URL interpolated unescaped into raw HTML with single quotes, allowing injection via URLs containing ' or newlines",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "absolutize_urls mangles protocol-relative URLs (//cdn.example.com) by prepending prefix, breaking links",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Check-then-create race condition when two jobs import same URL - both see embed.blank? and create topic, causing unique index violation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "embed.post can be nil if post was deleted, causing PostRevisor.new(post) to raise in update branch",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/5": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Mobile small-action offsets still assume the old 4em left padding - the mobile/topic-post.scss still sets .small-action .small-action-desc .custom-message { margin-left: -40px } which only made sense with the old 0.5em 0 0.5em 4em padding, but .small-action-desc now has padding: 0 1.5% and .small-action is a centred flex row",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/6": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "website_name is not included in untrusted_attributes, allowing it to be serialized for TL0 users in anonymous scope even though the website field is suppressed by restrict_user_fields?, exposing the user's host/path",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The conditional serializer hook method is missing the ? suffix - should be include_website_name? instead of include_website_name, causing the condition to never be consulted and website_name to be serialized even when website is blank",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "website_name goes stale after profile is saved because User.save only copies bio_excerpt back from the response, not website_name, so the template shows the old host while model.website is updated",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/7": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "In app/assets/stylesheets/desktop/topic-post.scss:291, the light-theme color changes from 30% to 70%, which is a medium-severity regression",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/8": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Item template rendered with itemView=\"group-member\" never aliases view context to member, causing member.username, avatar member, and action argument to resolve to empty/undefined values so list doesn't display members and removal receives no user object",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "itemView created by {{each member in members itemView=\"group-member\"}} receives each member as content but view doesn't define member alias, causing template bindings to resolve to undefined property",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "group.users is a has_many :through collection and its deletion API expects a user record not a raw integer ID, causing raises when passing user_id instead of deleting membership",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When members request fails, AdminGroupRoute.setupController drops the rejected promise so admin page silently remains empty with unhandled rejection",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When members request fails, GroupMembersRoute.setupController drops the rejected promise so public group-members page silently remains empty with unhandled rejection",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Math.floor(count / limit) + 1 overstates page count when count is exact multiple of limit, exposing invalid empty final page",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "After successful request, addMembers action leaves bound usernames value unchanged so selector contains previous users and second click submits same membership request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Removing member doesn't adjust current page when deleted member was last item on it, causing findMembers() to return empty page even though members exist on preceding page",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "automatic guard is evaluated in member item-view context not group controller context, so condition is truthy for automatic groups and renders remove link even though parent template hides adding members",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Pagination UI exposes extra empty page when member count is exact multiple of page limit due to totalPages calculation using Math.floor + 1",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When membership mutation succeeds but follow-up findMembers() request fails, removeMember resolves successfully while reload rejection is unhandled, keeping stale membership data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When admin removes last member on non-first page, findMembers sends old page offset so refreshed list stays empty even though earlier page contains members",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Request limit/offset values used directly in LIMIT/OFFSET without validation, causing invalid SQL query and 500 response for negative values, and allowing arbitrarily large limit to load entire membership list",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Endpoint doesn't make membership additions idempotent - if submitted username is already a member, unique index raises ActiveRecord::RecordNotUnique and request returns 500",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test only asserts membership count not identities, so implementation that adds wrong users would still pass",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test uses hard-coded id: 1 which is not guaranteed to be an automatic group with transactional fixtures and randomized examples",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test uses hard-coded group_id: 1 and user_id: 42 which may not exist or be automatic group, testing wrong behavior",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test depends on seed data assuming id: 1 is automatic group instead of creating the group under test",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test only verifies group becomes empty after request, not that requested user_id was specifically removed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "remove_member may leave group.user_count stale because group.users.delete uses delete_all which doesn't run counter_cache callbacks, and raises for non-members",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unbounded and unvalidated limit/offset on public members endpoint allows loading entire group with large limit",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Public group members page shows only first 50 members with no pagination controls",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "totalPages overcounts when user_count is exact multiple of limit due to Math.floor + 1 calculation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "addMembers/removeMember have no failure path and input is never cleared when PUT or DELETE fails",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/9": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "The call to I18n.fallbacks.ensure_loaded! raises ArgumentError (wrong number of arguments) on every request because the patched I18n.fallbacks object is a FallbackLocaleList whose ensure_loaded! method requires a locale argument, but it's being called without arguments",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Fallback locales are only loaded in controller requests - when Sidekiq jobs, mailers, or rake tasks set I18n.locale to a non-English locale, I18n.fallbacks.ensure_loaded! is never called, causing missing translations to render as 'translation missing'",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Fallback chain depends on SiteSetting.default_locale but the translation cache key doesn't include the fallback chain, so when default_locale changes the LRU cache keeps stale translations",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/keycloak-greptile/pull/1": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "No-arg isConditionalPasskeysEnabled() does not exist; this call fails to compile. When UsernameForm.authenticate calls isConditionalPasskeysEnabled() with no arguments, the only method defined is UsernamePasswordForm.isConditionalPasskeysEnabled(UserModel). Pass the user argument.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The call to isConditionalPasskeysEnabled does not match the only overload in UsernamePasswordForm, which requires a UserModel argument. As written, the module does not compile. Pass context.getUser() or add a matching overload.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The condition prevents the conditional passkey form from being initialized during a normal login, because context.getUser() is null before the username is submitted. WebAuthnAuthenticator.fillContextForm explicitly supports the user-null/id-less path, and the previous code populated it in that case; now the passkey option is absent from the initial username/password challenge, so passwordless login cannot start there.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "isConditionalPasskeysEnabled requires user != null, which disables passkeys on the initial login. When a user first opens the login page, context.getUser() is null, so isConditionalPasskeysEnabled(UserModel) returns false because of the trailing && user != null. authenticate() and challenge(context, error, field) then skip webauthnAuth.fillContextForm, removing the passkey conditional UI.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The catch treats every Exception from WebDriver as proof that the form is absent. Stale-element, invalid-session, timeout, and other driver/page-state failures are swallowed and the test can continue without checking the intended page. Use findElements(...).isEmpty() or catch only NoSuchElementException while allowing unrelated driver errors to fail the test.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/1": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "OptimizedCursorPaginator.get_item_key applies math.floor/math.ceil to datetime values instead of converting to epoch milliseconds first, causing TypeError when constructing cursors for audit logs with optimized_pagination=true",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Negative cursor offsets in OptimizedCursorPaginator reach queryset slicing which raises AssertionError since Django querysets don't support negative indexing",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "OptimizedCursorPaginator.value_from_cursor returns serialized integer directly instead of converting to the ordered field type (datetime), causing PostgreSQL query failures or invalid filtering when following cursors",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "BasePaginator still passes negative offsets to queryset when cursor.is_prev is set, causing AssertionError on queryset slicing",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "organization_context.member is dereferenced without None check, causing AttributeError when requester is not a superuser and member is None (e.g., org auth token or API-key access)",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Client-controlled optimized_pagination=true opt-in exposes unvalidated negative-offset path to queryset slicing with only organization_id filter",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/2": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "OptimizedCursorPaginator.get_item_key applies math.floor/math.ceil directly to AuditLogEntry.datetime (a datetime object), causing TypeError instead of returning audit-log results - needs datetime-to-numeric conversion like DateTimePaginator does",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "OptimizedCursorPaginator.value_from_cursor returns raw float cursor value instead of converting it to a datetime, breaking DateTime ordering",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When enable_advanced_features is set and a client sends a cursor with negative offset, get_result runs queryset[start_offset:stop] with a negative start, causing Django to raise AssertionError because negative indexing is not supported",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ZUNIONSTORE defaults to SUM aggregate, so when the same payload is present in both source sorted sets, its timestamp score is added rather than preserved, causing incorrect 1000-span eviction order",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When SpansBuffer is constructed with max_segment_spans below the fixed Redis cap, _load_segment_data returns every scanned span instead of enforcing that configured limit",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a newly deployed consumer processes a segment key written by the previous version, SpansBuffer.process_spans calls zadd against the existing set, causing Redis WRONGTYPE error because old sadd and new zadd use the same key namespace",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "organization_context.member can be None for non-superuser requests with no org membership, causing AttributeError when accessing organization_context.member.has_global_access",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unfinished OptimizedCursorPaginator is exposed on production endpoint when admin passes ?optimized_pagination=true, but it cannot produce correct DateTime cursors and negative offsets crash the query",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Redirect-chain limit reduced from 10000 to 1000 without being required by the change, causing segment trees deeper than 1000 redirects to be split into separate sets",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a segment grows past 1000 spans, zpopmin deletes the lowest end_timestamp_precise members silently with no metric or log recording the truncation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/3": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When a Discover query contains event.type:error alongside transaction terms, or negates that term, _is_error_focused_query returns true from substring match, causing organization_events_stats to rewrite count() for rows that are not errors and can upsample zero error matches. Need to parse the query or require a positive error-only event-type constraint before enabling the transformation.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When organization_events_stats calls _get_event_stats with a derived query such as transactions_only_query, _should_apply_sample_weight_transform inspects request.GET instead of that effective query, so an original event.type:error request enables upsampling for the derived transaction query. The split response then reports transaction counts using error sample weights.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a caller submits upsampled_count() directly on the Discover dataset, DiscoverDatasetConfig exposes this internal helper as a public function, so Snuba attempts sum(sample_weight) for non-allowlisted or transaction events where that column is not available and the request fails. The function should be marked private=True so only the controlled rewrite can invoke it.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When store_event receives an error-sampling context with a non-numeric or out-of-range rate, _set_sample_rate_from_error_sampling still writes a converted sample_rate, so test-created events are persisted with an invalid sampling weight and can produce incorrect upsampled counts. Need to apply the same type and range validation as event_manager._derive_client_error_sampling_rate which accepts only numeric values in (0, 1].",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Upsampling eligibility uses outer dataset and raw request query instead of scoped values. When _get_event_stats runs for a split dashboard widget or a discover/transactions split, it passes the outer dataset and the raw request to is_errors_query_for_error_upsampled_projects, but the query actually executed uses scoped_dataset and the rewritten query.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "60s eligibility cache serves stale allowlist decisions and contradicts the function's own docstring. When issues.client_error_sampling.project_allowlist changes, is_errors_query_for_error_upsampled_projects keeps returning the cached error_upsampling_eligible:{org}:{hash} value for up to 60s. A project removed from the allowlist keeps getting upsampled_count() until the entry expires.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "count() rewrite assumes sample_weight is always populated. When an allowlisted project has events stored without sample_weight (older events or events with no client sample rate), transform_query_columns_for_error_upsampling rewrites count() to upsampled_count() as count, which resolves to toInt64(sum(sample_weight)) returning 0 or NULL for those rows, showing lower counts in charts.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unrelated git submodule gitlink added. The PR adds sentry-repo as a 160000 gitlink pinned to a5d290951 with no .gitmodules entry or code using it. This appears to be an accidental nested-checkout artifact that will break or confuse clones and submodule updates.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/ai-code-review-evaluation/sentry-greptile/pull/5": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When `use-table-widget-visualization` is enabled, `tableResultComponent` renders `TableWidgetVisualization` with empty columns, rows, and metadata, so enabled dashboard table widgets display an empty table instead of the fetched result",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the attributes section is opened without a search query, `sortedAndFilteredAttributes` returns `sorted` before applying `HIDDEN_ATTRIBUTES`, so `is_segment`, `project_id`, and `received` are still rendered; they disappear only after the user types a query",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `nodestore.backend.get_multi` has a partial cache hit, `events.values()` is ordered as uncached IDs followed by cached IDs rather than the original `error_ids` order, so `fetch_error_details` associates one error ID with another error's title, message, and timestamp",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When an editor-draft report contains a negative `age`, `BrowserReportSerializer` accepts it and the endpoint returns 200, even though report age is an unsigned duration",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `gen_request_data` merges a replay segment with an error, it compares the nodestore event timestamp in seconds with the rrweb event timestamp in milliseconds, so every modern error is emitted before the replay breadcrumbs instead of at its chronological position",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a user switches organizations without changing `queryOptions`, `useTraceItemAttributeKeys` reuses the previous organization's cached attributes because the key omits `organization.slug`, so the UI can expose another tenant's attribute metadata",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `age` or `timestamp` is zero, `test_mixed_fields` does not exercise the exclusivity contract, so `BrowserReportSerializer.validate_age`/`validate_timestamp` can use truthiness checks and incorrectly accept both fields while this suite remains green",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When an attachment name is longer than the first grid track, `Flex` no longer applies the former `FlexCenter`'s `overflowEllipsis` rule, so the grid item's automatic minimum size is based on the name's min-content width and the table can expand horizontally instead of truncating the name",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `drain_mailbox_parallel` processes a mailbox without request failures, its loop is designed to run until `BATCH_SCHEDULE_OFFSET` expires (three minutes), but the taskworker kills it after 120 seconds",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the summary endpoint returns a successful response with `summary: null`, `FeedbackSummary` renders an empty card because `useFeedbackSummary` explicitly exposes `summary` as `string | null` and only suppresses the zero-feedback case",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a custom renderer intentionally returns `0`, `''`, or `false`, `renderDefaultHeadCell` and `renderDefaultBodyCell` treat that valid React node as absent and invoke the fallback",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the project store is still loading, `useProjectFromId` returns `undefined`, so this branch shows 'Project not found' before `useProjects` has finished populating the project list",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a client creates an error detector with an owner, ErrorDetectorValidator.create drops the validated owner, so the API returns an unowned detector and the submitted ownership is silently lost",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `firstSeen` is present on an xs/sm viewport, the `TextOverflow` wrapper remains a visible flex item even though its `TimeSince` child is hidden, so `Flex` reserves/shrinks space for an empty 100%-width item and the visible `lastSeen` timestamp is unnecessarily truncated",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a DB-query fingerprint reaches five occurrences, `should_create_group` increments `grouphash:{grouphash}:{project.id}` but deletes only `grouphash`, so the counter is never reset for this newly noise-configured type",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the page has an environment selection, `makeTraceItemAttributeKeysQueryOptions` drops it even though the endpoint's `get_snuba_params` parses environment filters from the request, so attribute discovery includes keys from unselected environments",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When `updateLocationWithAggregateFields` receives the `Visualize` instances held in `pageParams.aggregateFields`, this branch serializes the class instance directly because the new instances have `yAxis`, not `yAxes`, so `isBaseVisualize` is false and `parseBaseVisualize` then rejects those URL entries",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/10600": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When handleEnable succeeds and setStep(SetupStep.DisplayBackupCodes) runs, dismissing the dialog through onOpenChange closes the modal without calling onEnable, so the server has enabled 2FA while the only plaintext backup codes are discarded from the user's view. Make this success step non-dismissible until onEnable runs, or handle every close path by explicitly preserving/revealing or regenerating the codes.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When two login requests use the same backup code concurrently, authorize reads the same list before either update and both requests pass the match, so the single-use code authenticates twice. The later prisma.user.update also overwrites the earlier list from its stale snapshot. Consume the code with an atomic compare-and-set (or serialize the read/claim/update in a transaction) before accepting either login.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Backup code consumption is a non-atomic read-modify-write, so one code can be reused. Two concurrent authorize calls with the same backup code can both read the same decrypted user.backupCodes list and both find the code at index. Each then writes back its own copy with only that slot nulled, so both logins succeed and the single-use guarantee fails.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Credential-named variable assigned a 16+ char hardcoded literal.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the browser denies clipboard access or navigator.clipboard is unavailable, this handler invokes writeText without awaiting or catching its rejection, but immediately shows backup_codes_copied, so users can believe their recovery codes were saved when they were not. Await the clipboard operation inside try/catch and show an error or fallback instruction on failure.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the modal is closed after entering a six-digit code, resetState leaves form's totpCode registered, so useEffect sees the old six-digit value on the next setup and handleEnable submits it before the user reaches the OTP step. This can attempt enabling 2FA with a stale code and show an error in a hidden step. Reset totpCode (and unregister/reset the form) in resetState.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When TypeScript infers the empty array initializer, backupCodes becomes never[], so setBackupCodes(body.backupCodes) is not assignable and the web package fails type-checking/building. Declare the state with the actual backup-code element type (for example useState<string[]>([])) before storing the API response.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a 2FA-enabled user authenticated through a non-CAL identity provider submits a backup code, authorize rejects the request in the earlier !credentials.totpCode identity-provider guards before reaching this branch, so backup codes cannot recover access for those users. Update those guards to treat credentials.backupCode as a valid second factor, or validate the backup-code path before the provider-specific TOTP checks.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a keyboard user tabs through a PasswordField, the visibility button is removed from the tab sequence, so they cannot reach or activate the control without a mouse and the password visibility toggle fails the keyboard-operability contract. Remove tabIndex={-1} or set it to 0 so the button remains keyboard accessible.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Backup codes can be lost, and stay in state, if the dialog closes without the Close button. When handleEnable succeeds, 2FA is already enabled on the server and setStep(DisplayBackupCodes) is the only time the codes are shown. The Dialog still receives onOpenChange, so Escape or a click outside closes it without calling resetState or onEnable.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/10967": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When a paid collective booking reaches handlePaymentSuccess, this event contains only booking.destinationCalendar or the organizer's calendar, so EventManager.create never receives the other hosts' calendars and they are not invited. handleNewBooking stores only the first destination while keeping the team list only on the in-memory event. Persist or reload all collective host calendars before constructing this payment event.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When getBooking or handlePaymentSuccess reconstructs a paid collective booking, selectedDestinationCalendar contains only the persisted primary calendar or organizer fallback, so EventManager.create cannot invite the other hosts. handleNewBooking stores only evt.destinationCalendar[0], not the appended team calendars. Persist or reload all collective host calendars before building either event.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When IS_TEAM_BILLING_ENABLED is false, createHandler omits both slug and requestedSlug, so the newly created organization has no usable URL and publishHandler cannot recover it because it requires metadata.requestedSlug. This breaks self-hosted organization creation. Restore the non-billing branch for slug while retaining requestedSlug only for billing-enabled organizations.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a collective booking requires confirmation, confirmHandler rebuilds evt.destinationCalendar from only the persisted booking destination or the confirming user's calendar, so handleConfirmation creates an event for at most one host and omits the other collective hosts collected by handleNewBooking. Confirming such a booking leaves those hosts without calendar events; load the collective event members' destination calendars before calling handleConfirmation.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking has multiple Lark destinations, EventManager.createAllCalendarEvents invokes createEvent once per destination credential but LarkCalendarService.createEvent always selects event.destinationCalendar[0], so the second host's event is sent to the first host's calendar (or fails because that calendar is not visible to the second account). Use the destination matching the active credential, or pass the selected external calendar ID into this service.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When evt.destinationCalendar is an empty array, EventManager.create dereferences mainHostDestinationCalendar.integration, so event creation throws before the intended Meet fallback runs. Use optional chaining (or explicitly handle the empty list) so a missing destination safely selects Cal Video instead of producing an unhandled booking failure.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a reschedule merges a booking with multiple calendar references, updateAllCalendarEvents updates every new reference but the existing cleanup below still deletes only the first old calendar reference, so the other hosts' old events remain active and attendees see duplicate/stale bookings. Delete every old calendar reference after processing the new references, rather than selecting one with find.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When cancelling a recurring booking with multiple calendar references, handleCancelBooking runs every credential against updBooking.references.find(...), so each calendar adapter receives the first calendar reference's UID and external ID rather than its matching credential reference. Secondary events can remain active, or the wrong provider can be asked to delete them. Match each booking reference to the current credential (or iterate the references directly) before calling deleteEvent.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When EventManager.createAllCalendarEvents processes a secondary destination with a different credential, BaseCalendarService.createEvent filters that credential's calendars using the first destination's externalId, so it produces no iCal event for the secondary host (or targets the wrong calendar when IDs overlap). Use the destination matching the current credential, passed through the credentialId parameter, or avoid filtering when no matching destination exists.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When evt.destinationCalendar is null or [], const [mainHostDestinationCalendar] = ... ?? [] leaves it undefined. mainHostDestinationCalendar.integration then throws a TypeError, so create() crashes for a Google Meet event with no destination calendar. The old code used ?.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "In create(), credentialId: isCalendarType ? result.credentialId : undefined replaces the old isCalendarType ? destinationCalendar?.credentialId : result.credentialId. For video results (Daily, Zoom, Meet) the credentialId is now always undefined, so the saved booking reference has no credential. Later reschedule or cancel can no longer resolve the video.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The fallback only runs when externalCalendarId is falsy. find((cal) => cal.externalId === externalCalendarId) therefore compares against a falsy value and always yields undefined. updateEvent ends up with no calendar id. deleteEvent (line 317) has the identical bug and falls back to primary.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "createEvent always uses event.destinationCalendar[0].externalId. EventManager now calls createEvent once per destination and credential, so a second collective host's Office365 credential posts to /me/calendars/<first host's calendar id>/events. The calendar does not exist for that user, so the request fails or lands in the wrong calendar.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "evt.destinationCalendar is null when neither eventType.destinationCalendar nor organizerUser.destinationCalendar exists. evt.destinationCalendar?.push(...teamDestinationCalendars) is then a no-op. Collective hosts' calendars are never added, so those hosts get no calendar event. Initialise the array to [] and always push the team calendars.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The old code set slug only when !IS_TEAM_BILLING_ENABLED. The new IS_TEAM_BILLING_ENABLED ? { slug } : {} sets it only when billing is enabled. With billing on, the slug is now created immediately and also stored as requestedSlug. With billing off, no slug is set at all.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking has a Meet location but neither it nor its user has a destination calendar, confirmHandler supplies an empty array, so EventManager.create reaches mainHostDestinationCalendar.integration and throws instead of creating the configured fallback meeting or calendar event. Preserve a nullable/missing value or guard the first destination before reading integration.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a destination has no matching credentialId (for example, the existing no-credential destination path), createEvent inserts into primary but the hangout-link patch uses selectedCalendar as undefined, so Google rejects the patch and the created event keeps the incomplete description. Preserve the same fallback calendar ID for both insert and patch, or skip the patch when no ID is available.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When updateEvent is called without an externalCalendarId, this lookup searches for a destination whose externalId equals undefined, so it always returns undefined instead of the event's main destination calendar. The subsequent Google update therefore receives an invalid calendar ID and rescheduling fails on callers that omit the external ID. Use the first destination as the fallback.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When deleteEvent is called without an externalCalendarId, this lookup compares every destination ID with undefined, yielding no calendar ID and forcing deletion on primary. For a non-primary configured destination, Google returns 404 and the stale event remains there. Fall back to the first destination calendar when no explicit external ID is supplied.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When createEvent is invoked for the second collective host, mainHostDestinationCalendar still selects the first destination while selectedCalendar selects the current credential's destination, so the event on host 2's calendar is created with host 1's calendar ID as the organizer attendee and Google can assign the wrong organizer/invitation identity. Select the destination matching credentialId for the attendee as well.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a collective booking is rescheduled through updateEvent for a non-first destination, mainHostDestinationCalendar still comes from index 0 even though the update receives that destination's externalCalendarId, so the updated event sends the first host's calendar identity as its organizer attendee. Match this value by externalCalendarId, with the first destination only as the fallback for legacy events.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a destination has no credentialId, this branch calls createEvent without destination.externalId, so its EventResult.externalId is undefined even though the destination selected a specific external calendar. EventManager.create then persists that missing value in referencesToCreate, leaving cancellation or rescheduling unable to address the selected provider calendar. Pass the destination external ID through this branch too.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When updateLocation rebuilds references, result.externalId is always absent for updateEvent: CalendarManager.updateEvent returns no externalId field. Consequently this mapping overwrites each existing externalCalendarId with undefined, and a later cancellation or reschedule cannot target the provider event. Preserve the reference's existing external ID or return it from updateEvent.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a reference's credentialId is missing from both the in-memory list and Prisma, this line calls updateEvent with undefined; CalendarManager.updateEvent then returns by reading credential.appName, which rejects. The surrounding Promise.all catch converts the whole update into generic failures, masking valid references that were already processed. Skip or record only this reference when no credential can be loaded.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a recurring booking reference is recovered by the prisma.credential.findUnique fallback, this branch still builds its deletion work only from bookingToDelete.user.credentials, so calendarCredential is never used for recurring deletion. If the referenced credential is absent from the eager relation, its recurring events are not deleted. Include the recovered credential in the deletion set or delete through the matched reference directly.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a recurring booking has multiple calendar references, handleCancelBooking enters the all-credentials recurring deletion block once per outer reference, and each entry loops over all credentials and all updatedBookings. The same external events are therefore submitted for deletion repeatedly, which can produce provider errors and makes cancellation dependent on duplicate requests. Move recurring deletion outside the per-reference loop or scope it to the matched reference and credential.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a collective event type has an explicit eventType.destinationCalendar, handleNewBooking makes it the only primary calendar and never adds the first selected host's user.destinationCalendar, so that host's calendar event is omitted while later hosts are appended. Build the list from all collective hosts (deduplicating the configured primary if appropriate), or otherwise explicitly guarantee that this calendar belongs to the first host.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the organizer and event type have no destination calendar but a later collective host does, this optional push discards every teamDestinationCalendars entry because evt.destinationCalendar is null. The booking then reaches EventManager.createAllCalendarEvents without any destination and falls back to the organizer's connected calendar, so the host calendar is not created. Initialize the event array from teamDestinationCalendars when no primary exists, or concatenate before assigning evt.destinationCalendar.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/11059": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Google credential key is saved as a safeParse result object - parseRefreshTokenResponse returns a zod SafeParse result ({success, data}) but refreshAccessToken assigns that result to key and writes it with prisma.credential.update, causing googleCredentialSchema.parse to fail on subsequent reads",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, refreshOAuthTokens returns the raw Fetch Response, so HubspotService.refreshAccessToken assigns that response as HubspotToken and persists expiresIn/token fields as undefined instead of reading its JSON body",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the sync endpoint returns an access token plus expiry or refresh-token fields, the z.object schema strips those unknown fields because it does not use .passthrough(), so the parsed result contains only access_token and callers lose expiry data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When this schema validates a normal sync response, the computed property is a literal key derived from z.string().toString() rather than a wildcard for numeric properties, so a response containing access_token and expires_in/expiry_date fails validation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, refreshOAuthTokens returns the native fetch Response, but refreshAccessToken reads res.data as if it were the Google client's Axios response, so token is undefined and every expired Google Calendar credential crashes",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a Google token refresh succeeds, parseRefreshTokenResponse returns the entire Zod safeParse result rather than its parsed data, so this assigns { success, data } to credential.key instead of the Google credential object",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, refreshOAuthTokens returns the raw fetch Response, but refreshAccessToken treats it as a HubspotToken, so expiryDate becomes NaN and the credential is persisted with response-object data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, refreshOAuthTokens returns the sync endpoint's generic token response, so handleLarkError treats it as a Lark response and throws because code is absent",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, parseRefreshTokenResponse rejects every normal token response because its minimumTokenResponseSchema uses z.string().toString() as a computed required property name, breaking Office 365 authentication",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, refreshOAuthTokens returns the sync endpoint's newly issued token, but refreshAccessToken later returns o365AuthCredentials.access_token instead of responseBody.access_token, so the Teams API call uses the expired token",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When Salesforce initializes this service, getClient reaches this update, but prisma is not imported or otherwise declared in this file, so the module fails TypeScript compilation with Cannot find name 'prisma'",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the Salesforce access token is expired, this code persists accessTokenParsed.data but the jsforce.Connection immediately below still receives credentialKey.instance_url and credentialKey.access_token, the pre-refresh values",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When APP_CREDENTIAL_SHARING_ENABLED and CALCOM_CREDENTIAL_SYNC_ENDPOINT are configured, Salesforce still posts directly to login.salesforce.com, so refreshOAuthTokens is never invoked for this app",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, refreshAccessToken passes credentialId to refreshOAuthTokens, so the sync request sends the Credential primary key as calcomUserId instead of the owning user's ID",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, refreshOAuthTokens returns the native fetch Response, but zohoCrmAuth treats it like an Axios response and reads zohoCrmTokenInfo.data, so the refresh throws",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, parseRefreshTokenResponse routes this response through minimumTokenResponseSchema, whose computed keys use z.string().toString() and therefore create a literal '[object Object]' property rather than a numeric-field constraint, causing Zoom token refresh to fail",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Sync branch returns a raw fetch Response to callers that expect other shapes - Google reads res?.data so token is undefined, HubSpot reads .expiresIn and gets undefined",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "minimumTokenResponseSchema uses bogus computed keys and strips expiry fields - [z.string().toString()] evaluates to the literal key '[object Object]', not a wildcard number field",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Placeholder refresh_token overwrites the real token, also outside sync mode - when the parsed response has no refresh_token, parseRefreshTokenResponse sets it to the literal string 'refresh_token'",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "credentialId is passed as the user id to refreshOAuthTokens - In refreshAccessToken, refreshOAuthTokens(..., 'zoho-bigin', credentialId) passes the credential's primary key where the third parameter is userId",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Salesforce getClient refreshes unconditionally and then connects with the stale token - getClient now POSTs to login.salesforce.com on every constructor call, regardless of expiry or credential-sync mode",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When two synchronization requests for the same user and app arrive concurrently, this find-then-create sequence lets both requests observe no credential and insert separate rows due to missing (userId, appId) unique constraint",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a caller sends a malformed ciphertext or plaintext that is not valid JSON, symmetricDecrypt or JSON.parse throws out of handler, so Next.js returns an unstructured 500 instead of a client error",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the credential sync endpoint stops accepting connections, refreshOAuthTokens awaits this fetch without a timeout or cancellation signal, so every token refresh for a synced user remains pending indefinitely",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, getAppAccessToken() still runs before refreshOAuthTokens, so LarkCalendarService.refreshAccessToken fails on missing or expired local Lark app credentials before the sync endpoint is contacted",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When CALCOM_CREDENTIAL_SYNC_ENDPOINT is configured but stops responding, refreshAccessToken waits indefinitely in refreshOAuthTokens, leaving the Office 365 token request hanging",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, refreshOAuthTokens returns the sync endpoint response, but refreshAccessToken still assumes the Microsoft response shape and overwrites a supplied absolute expiry_date with Date.now() when expires_in is absent",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled and CALCOM_CREDENTIAL_SYNC_ENDPOINT does not respond, refreshOAuthTokens waits indefinitely, so getToken never resolves and Teams meeting creation/update remains hung",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled and the sync endpoint returns the documented access-token/expiry payload, webexAuth passes that response to webexRefreshedTokenSchema, which also requires Webex scope, token_type, and refresh_token, causing every synced Webex refresh to throw",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled, refreshOAuthTokens performs a separate fetch to the sync endpoint without any timeout, so webexAuth remains pending indefinitely if that endpoint stalls",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When app credential sharing is enabled, refreshOAuthTokens returns a native fetch Response, but refreshAccessToken treats it as an Axios response and reads tokenInfo.data, so the subsequent tokenInfo.data.error access throws for Zoho Bigin",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When credential sharing is enabled and the sync endpoint returns its documented access token plus an expiry field such as expiry_date, zoomAuth passes a token without expires_in to the code below, so key.expiry_date becomes NaN",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the credential-sync endpoint stops responding, zoomAuth awaits refreshOAuthTokens indefinitely, so Zoom token acquisition and the booking operation remain hung",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Webhook throws unhandled errors on bad input or decrypt failure",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Webhook secret compared with non-constant-time !== operator",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/14740": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When an attendee or team admin adds guests to someone else's booking, addGuestsHandler builds eventManager with the caller's credentials instead of the organizer's, causing calendar references without credentialId to be updated through the wrong calendar integrations",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Attendees are persisted before the unguarded calendar update - prisma.booking.update writes new attendees before eventManager.updateCalendarAttendees runs, and if calendar update throws, retry fails with emails_must_be_unique_valid",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "No maximum limit on guests array allows unbounded database, calendar, and email work from a single request - add .max(...) to bound batch size",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Same email appearing multiple times in one request creates duplicate attendee rows and duplicate calendar/email processing - enforce uniqueness with .superRefine(...) or deduplicate before createMany",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Fractional bookingId is accepted by ZAddGuestsInputSchema, causing server-side validation error instead of clean input rejection - constrain with z.number().int()",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Team admin check uses && instead of || between isTeamAdmin and isTeamOwner, requiring OWNER role when ADMIN should be sufficient",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "uniqueGuests retains duplicate entries when same new address appears twice because it only compares against existing attendees, creating duplicate attendee rows",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Case-sensitive blacklist comparison allows bypassing BLACKLISTED_GUEST_EMAILS by using different casing - normalize guest emails before comparison",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When eventManager.updateCalendarAttendees fails after prisma update succeeds, attendees are persisted but calendar is inconsistent, and retry cannot resynchronize",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "sendAddGuestsEmails error is caught and discarded, returning success even though guest notifications failed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "sendAddGuestsEmails receives unfiltered guests array instead of uniqueGuests, causing existing attendees to receive wrong email template (AttendeeScheduledEmail instead of add-guests notice)",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "utils.viewer.bookings.invalidate() promise is neither awaited nor handled in onSuccess, leaving booking list stale if invalidation rejects",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Case-sensitive Set comparison in ZAddGuestsInputSchema allows duplicate guests with different casing to be submitted",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "MultiEmail component uses key={index} which is positional, causing focus and click handler issues when removing middle items",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/14943": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When any non-SMS workflow reminder has retryCount > 1, this handler deletes it as well, so email or other-method reminders are permanently lost during the SMS cron run. The retry cleanup must remain scoped to SMS reminders by adding method: WorkflowMethods.SMS to the second OR branch, or by combining the method predicate outside the OR.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When two cron requests process the same unscheduled reminder concurrently, both scheduleSMSReminders iterations read the same reminder.retryCount and write the same incremented value, so the failure count is lost and the reminder can be sent/retried beyond the two-failure limit. Use Prisma's atomic increment: 1 update and add a claim/lock before scheduling to prevent concurrent processing.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "retryCount is a counter that must remain non-negative, but this migration permits arbitrary negative values. A negative value would never satisfy the cleanup predicate (retryCount > 1) and could leave a failed reminder retained indefinitely if written by another client or an administrative update. Add a CHECK (\"retryCount\" >= 0) constraint when introducing the column.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unguarded retryCount update in catch can abort the whole cron run - when twilio.scheduleSMS or a prior step throws and the prisma.workflowReminder.update in the catch block also throws, the exception escapes the loop causing a 500 error and preventing processing of later reminders.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Retry count is not incremented when message or sendTo is missing - when sendTo is empty or message is empty, the if block is skipped, no exception is thrown, and the reminder stays scheduled: false and is retried on every cron run until scheduledDate.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Failure after a successful scheduleSMS is counted as a retry and can cause a duplicate SMS - when twilio.scheduleSMS succeeds but the following update setting scheduled: true throws, the catch block increments retryCount and the reminder remains scheduled: false, causing the next cron run to schedule the same SMS again.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/22345": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Unparenthesized auth condition returned from getBaseConditions can break precedence - when no filters are set, getBaseConditions returns authConditions as-is with format `(A) OR (B)` without outer parentheses, so when interpolated as `WHERE \"createdAt\" > ${x} AND ${baseConditions}` it becomes `x AND A OR B`, allowing the OR branch to bypass other predicates and tenant restrictions",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/22532": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Path is resolved relative to caller's current working directory, not relative to script - running scripts/test-gcal-webhooks.sh from repository root reads or creates ../.env outside the repository while app loads repository's .env",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "sed -i '' syntax is BSD/macOS-specific - on GNU/Linux, GNU sed treats empty string as input filename and fails, leaving GOOGLE_WEBHOOK_URL stale while printing success message",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Process reuse based only on command-line substring and URL in shared fixed log can match unrelated Tunnelmole invocation - script never verifies matched process owns the log or URL is current, potentially writing another session's URL into GOOGLE_WEBHOOK_URL",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "tsx is not declared in workspace or root package manifest - script relies on npx resolving/downloading undeclared package at runtime, causing yarn dev:cron to fail in clean/offline install",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When fetchAvailabilityAndSetCache completes, updateManyByCredentialId receives empty update so Prisma has no explicit field mutation to stamp SelectedCalendar.updatedAt - cache-refresh timestamp remains stale or query can fail",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When cached data is deleted, CredentialActionsDropdown only invokes optional onSuccess callback and retains original cacheUpdatedAt - EventAdvancedTab caller continues showing old timestamp and offers deletion of already-removed data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When delete confirmation is submitted repeatedly or reopened while request is pending, deleteCacheMutation.mutate can be called more than once because ConfirmationDialogContent receives no isPending value - sends duplicate requests",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When remove confirmation is submitted repeatedly or reopened while request is pending, disconnectMutation.mutate can be called more than once because ConfirmationDialogContent receives no isPending value - sends duplicate credential-delete requests",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When SelectedCalendarsSettingsWebWrapper is rendered from EventAdvancedTab, onChanged is omitted so CredentialActionsDropdown receives no success callback and connected-calendars query is not invalidated after cache deletion",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Predictable shared /tmp/tmole.log is removed and reopened without exclusive creation or ownership checks - another local process can recreate or replace this path, causing Tunnelmole output to be written to attacker-chosen file",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Failure paths call cleanup which always runs exit 0 - callers and CI see success even though GOOGLE_WEBHOOK_URL was never set; reuse branch extract_url_from_log greps /tmp/tmole.log which may not exist or belong to another session producing empty URL",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/7232": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When the cron runs after a cancelled reminder's scheduled date, the earlier unconditional deleteMany removes the row before this sweep can call SendGrid, so the provider send remains active and the cancelled email is delivered. Exclude cancelled: true from the expiry cleanup or perform provider cancellation before deleting past-due rows.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a workflow with scheduled email reminders is deleted, deleteScheduledEmailReminder runs without await and workflow.deleteMany executes immediately, so the mutation can finish while the SendGrid cancellation is still pending; a provider failure is only logged by the helper and the scheduled email can still be sent. Await all cancellation calls before deleting the workflow.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When an edited step has reminders in remindersToUpdate, this forEach(async ...) is not awaited by the surrounding workflow update, so reminder cancellation continues after new reminders are created and the mutation can report success with the old scheduled send still active. Replace it with an awaited Promise.all (and propagate cancellation failures) before scheduling replacements.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a cancelled or rescheduled booking reaches the next cron run after its email scheduledDate, deleteScheduledEmailReminder only marks the reminder cancelled, while scheduleEmailReminders deletes all past email rows before processing cancelled rows. The SendGrid batch therefore remains active and the reminder is sent. Exclude cancelled rows from the initial past-date deletion or cancel them before deleting expired rows.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking is rescheduled, this forEach starts the asynchronous cancellation calls without awaiting them, so handleNewBooking proceeds to eventManager.reschedule and can return before the provider cancellation completes; a failed or delayed call can leave the old reminder active and it can still be sent. Replace the loop with an awaited Promise.all (and make failures observable) before rescheduling.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking is cancelled, these asynchronous reminder cancellations are launched without being awaited, so the handler can finish and the serverless process can be reclaimed before workflowReminder.cancelled is persisted or the SMS provider is cancelled. The reminder then remains active and can be sent. Collect these promises and await them before returning, or use an explicit durable job.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Reschedule cancels email reminders immediately, bringing back the 100-pending-cancellation failure. When a booking is rescheduled, deleteScheduledEmailReminder(reminder.id, reminder.referenceId, true) posts a SendGrid cancel straight away and returns. It never sets cancelled=true and never deletes the row.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When SendGrid rejects cancellation for one reminder, this loop aborts before deleting or processing the remaining reminders, so eligible cancelled emails remain in the database and are retried as a blocked batch on every run. Process each reminder in its own try/catch (and delete only after its request succeeds), or use per-item settled results so one invalid batch ID does not stop the cron sweep.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking is rescheduled, these cancellation calls are launched without awaiting them, so the mutation can finish while workflowReminder.cancelled is still false; the reminder scheduler can then select the old reminder and send it. Await the cancellation promises (for example, collect them and await Promise.all) before continuing.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When immediateDelete is true during rescheduling, deleteScheduledEmailReminder cancels SendGrid and returns without deleting or marking the WorkflowReminder, so the old booking retains a scheduled reminder that is neither represented as cancelled nor recoverable by the cancellation sweep. Delete the row after a successful immediate cancellation, or mark it cancelled so stale records are reconciled.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "try/catch cannot catch failures from un-awaited async reminder deletes. deleteScheduledEmailReminder and deleteScheduledSMSReminder are async, and they are called inside forEach without await. The surrounding try/catch therefore catches nothing, and log.error is dead. The promises are floating.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Reminder cancellation is no longer awaited on the booking-cancel path. Before this change, the reminder deleteMany calls were awaited through Promise.all(prismaPromises...). Now deleteScheduledEmailReminder and deleteScheduledSMSReminder are fired inside updatedBookings.forEach and never awaited.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "SMS reminder row is kept when the Twilio cancel throws. When twilio.cancelSMS(referenceId) throws, the catch block logs and returns before prisma.workflowReminder.delete runs. The row stays behind for a cancelled booking and nothing retries it, so the SMS can still go out. Delete the row in a finally, or in an independent step.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "One failed SendGrid cancel aborts the whole cancellation batch and skips all row deletions. The loop awaits client.request for each reminder. The deletes are queued in workflowRemindersToDelete and only run in Promise.all after the loop. When one cancel call throws, the catch exits the loop. The remaining cancelled reminders are not cancelled.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/8087": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When a reschedule has calendar or video references, async forEach starts deletion without being awaited, so the handler sends the reschedule email and continues before the old meeting is removed; a rejection is also left unhandled. Should await Promise.all(bookingRefsFiltered.map(async (bookingRef) => ...)) or use a sequential for...of before sending the email and persisting the reschedule.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking has calendar or video references in vital/lib/reschedule.ts, forEach launches the async deletions without awaiting them, so Reschedule sends the reschedule email and returns before cancellation completes, while any rejection bypasses the surrounding try/catch as an unhandled promise. Should await Promise.all(bookingRefsFiltered.map(async (bookingRef) => ...)) or use a for...of loop before sending the email.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When cancelling a recurring booking, the async callback passed to forEach yields at await getCalendar(credential), so Promise.all below runs before any apiDeletes.push calls and the handler returns while calendar deletions are still running. Should await the credential loop with Promise.all over mapped callbacks before awaiting apiDeletes, or move the work into an awaited for...of loop.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When packages/app-store/index.ts is evaluated, every import() expression in this object starts immediately, so appStore still loads all 28 integrations before any provider is requested and unused optional integrations can add startup work or fail startup. Should make each entry a deferred loader (a function returning import()) and await that loader at the call sites.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a booking has calendar or video references in wipemycalother/lib/reschedule.ts, forEach starts the async deletions without awaiting them, so Reschedule sends the reschedule email and returns before the old external events are removed; any rejection also bypasses the surrounding try/catch and becomes an unhandled rejection. Should await Promise.all(bookingRefsFiltered.map(async ...)) or use an awaited sequential loop before sending the email.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/calcom/cal.com/pull/8330": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When two fixed hosts have overrides on the same date, checkIfIsAvailable receives the flattened dateOverrides for every host through ...schedule and does not filter them by host. An override belonging only to host B can therefore set dateOverrideExist for host A and make A's slot pass outside A's actual override.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Working-hours check compares slot start with itself because end is computed from slotStartTime, so it equals start and the slot length is ignored. A slot that starts in the last minutes of working hours is still accepted.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The find method returns true as soon as any one workingHour entry on that day fails, incorrectly rejecting slots covered by another range",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a slot starts before a working-hours closing time but extends past it, checkIfIsAvailable sets end to the slot start, so the closing-time comparison never detects the overrun and an unavailable booking time is returned",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a weekday has multiple working-hour ranges, checkIfIsAvailable rejects a slot as soon as any matching range does not contain it, even if another range does contain it, because find is used for the outside predicate",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a date override has equal start and end timestamps, checkIfIsAvailable compares two different Dayjs object instances with ===, so this branch is never taken and the override is processed as a normal interval",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a flattened date override carries a timezone different from the schedule timezone passed as organizerTimeZone, checkIfIsAvailable derives the shift from the schedule timezone and ignores the override's stored timeZone",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a slot starts exactly at a date override's end, checkIfIsAvailable treats it as inside the override because this condition only rejects strictly later starts, so a slot immediately after an override can be returned as available",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a host has multiple date overrides on the same day, checkIfIsAvailable rejects a slot as soon as it falls outside any one override, even when it is inside another, because find searches for an outside interval rather than an interval that contains the slot",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the invitee timezone is not UTC, checkIfIsAvailable compares UTC day/minutes from slotStartTime with workingHours, whose getWorkingHours values are expressed in the invitee/local day",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When an override crosses the invitee's calendar-day boundary, getSlots shifts the override only after activeOverrides has filtered it by the unshifted UTC date, so the override is omitted for the invitee day that actually contains it",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a date override spans a daylight-saving transition, getSlots applies the UTC-offset difference at override.start to both endpoints, so the converted endTime is wrong after the organizer or invitee changes offset during the override",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Date-override bounds check only rejects a slot whose start is after the override end, but a slot that starts inside the override but ends after it is still accepted",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When override.start is a Date, dayjs(override.start.toString()) formats it to a locale string and re-parses it in the server's local timezone, which drops milliseconds and depends on the host timezone",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "override.timeZone is optional in TimeRange, so an undefined value causes issues with timezone/day wrap calculations",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/67876": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When GitHub is unreachable or rejects the token exchange, OAuthLoginView.dispatch lets safe_urlopen raise instead of returning the recoverable installation error, so the OAuth callback becomes a 500. Apply the same failure handling as OAuth2CallbackView.exchange_token around this exchange and get_user_info",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When an existing active GitHub integration was created without sender metadata, GitHubInstallation.dispatch raises KeyError while validating the OAuth user, so the installation fails with a 500 instead of the invalid-request response. Use guarded access and reject missing or malformed sender data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When GitHub's /user request fails or returns a non-mapping body, OAuthLoginView.dispatch propagates the exception instead of rendering the recoverable installation error, so an otherwise transient or malformed OAuth response becomes a 500. Catch the provider request/response failure and validate the response shape before checking login",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When test_github_user_mismatch mutates webhook_event, GitHubWebhook.handle validates the HMAC over that new byte payload, but this test neither configures github-app.webhook-secret nor recomputes the signature. The request therefore returns 401 before InstallationEventWebhook records the sender, so the asserted 204 and later mismatch path are not exercised",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When test_installation_not_found sends the callback with state=ddd023d87a913d5226e2a882c4c4cc05, OAuthLoginView.dispatch rejects it before calling GitHubInstallation or the mocked /app/installations/{id} endpoint, so the test passes even if installation lookup no longer handles a 404. Use the pipeline signature produced by the preceding initialization request and assert the endpoint was requested",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Unguarded integration.metadata[\"sender\"][\"login\"] lookup - when an existing active Integration has no sender key in metadata, GitHubInstallation.dispatch raises KeyError, causing a 500 instead of the install-failed page",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/77754": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When a worker creates multiple AssignmentSource instances after module import, the queued field always contains the module-import timestamp rather than the instance's creation time, causing stale and identical ordering metadata. Should use a dataclass default_factory so each source receives a fresh timestamp.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The queued default value (timezone.now()) is evaluated once at import time when the class body runs, so every AssignmentSource built through from_integration or without an explicit queued gets the same process-start timestamp, making staleness or ordering checks unreliable.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/80168": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "MetricAlertDetectorHandler extends StatefulDetectorHandler but does not implement required abstract methods counter_names, get_dedupe_value, get_group_key_values, or build_occurrence_and_event_data, causing TypeError when detector processing tries to instantiate it",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When StatefulDetectorHandler.evaluate_group_key_value forwards an incorrect per-group value, build_mock_occurrence_and_event produces the same payload because it never uses value, so test_state_results_multi_group still passes with group_2: 10 even when the occurrence is built from 6 or the value is not forwarded",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "TestEvaluateGroupKeyValue.test_dedupe compares the result for group_key against a fixture built for val1, causing the expected occurrence to have a different fingerprint from the occurrence created by evaluate_group_key_value, making the assertion fail even when production is correct",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/80528": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Partial failure at src/sentry/monitors/logic/incidents.py:56 can leave an environment in ERROR without an active incident",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/93824": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When a consumer is assigned non-zero shard IDs (for example [4]), _ensure_processes_alive passes the process index to _create_process_for_shards, whose parameter is treated as a shard ID and searched in process_to_shards_map; no process is recreated because 0 is not in [4], leaving that flusher permanently dead and its Redis segments unflushed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When --flusher-processes is given a negative value, SpanFlusher sets num_processes to that negative value, creates no worker entries, and then assigns every shard to index 0 without creating a process for it, so spans continue entering Redis with no flusher publishing them",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Hung flusher process is never killed before restart because _ensure_processes_alive only calls process.kill() if isinstance(process, multiprocessing.Process), but processes come from mp_context.Process which is SpawnProcess that subclasses BaseProcess, not multiprocessing.Process, so the check is False and the kill is skipped",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When --flusher-processes is set to a negative value, SpanFlusher computes a negative num_processes and then hits modulo by -1 while assigning shards, causing the consumer to fail during startup; 0 also silently means all shards because of the or fallback",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a produce_to_pipe flusher thread is detected as hung, _ensure_processes_alive skips termination because threading.Thread is not a multiprocessing.Process, then starts a replacement for the same shards, so both workers flush the same Redis keys and can publish duplicate payloads",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When join(timeout=...) reaches its deadline while waiting for an earlier worker, the break exits the loop before the later workers are terminated, leaving those background processes alive after the strategy has returned",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "join() skips terminating remaining processes on deadline and never terminates spawn processes because the isinstance(process, multiprocessing.Process) guard is False for SpawnProcess",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Memory check scans the whole Redis cluster once per flusher buffer because submit calls buffer.get_memory_info() on every per-process buffer in self.buffers, and SpansBuffer.get_memory_info calls iter_cluster_memory_usage(self.client) which covers the entire cluster regardless of assigned_shards",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/getsentry/sentry/pull/95633": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When result_processor raises, OrderedQueueWorker.run logs the exception and still marks the work item complete, so the commit loop can acknowledge an item whose side effect never ran and Kafka will not redeliver it",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When decoding, grouping, or queue_pool.submit raises, SimpleQueueProcessingStrategy.submit logs the error and immediately completes the broker offset, so the message can be committed without ever being processed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When FixedQueuePool.shutdown runs with queued items, setting worker.shutdown first lets each OrderedQueueWorker process at most its current item and then exit because while not self.shutdown is false; queue.shutdown(immediate=False) does not drain those remaining items",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When result_processor raises while processing a queued result, OrderedQueueWorker.run catches the exception and still calls complete_offset, so this strategy commits the Kafka offset and permanently drops the failed result",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Strategy close()/terminate() shuts down the factory-owned shared queue pool - when a Kafka rebalance or partition reassignment makes arroyo close or join the strategy, SimpleQueueProcessingStrategy.close() calls self.queue_pool.shutdown() but that queue pool is created once in ResultsStrategyFactory.__init__ and reused by every strategy",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the uptime consumer is started with --mode=thread-queue-parallel --max-workers=0, uptime_options accepts the value and ResultsStrategyFactory creates a FixedQueuePool with zero queues; the first submission then fails in get_queue_for_group with division by zero",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When result processing is slower than message intake, FixedQueuePool uses an unbounded queue.Queue, so submit never applies the natural backpressure claimed by SimpleQueueProcessingStrategy and queued messages grow until the consumer process exhausts memory",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a new partition is first seen concurrently by submit and _commit_loop, _get_partition_lock can create two different locks and return the uninstalled one to one caller, so add_offset and get_committable_offsets mutate the same partition state without mutual exclusion",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the consumer discovers a new Kafka partition while _commit_loop evaluates offsets, list(self.all_offsets.keys()) iterates the defaultdict without synchronization while add_offset may insert that partition, causing potential RuntimeError: dictionary changed size during iteration",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When _commit_loop commits a partition repeatedly, OffsetTracker.mark_committed removes old entries from all_offsets but leaves every completed offset in outstanding, causing unbounded memory growth on a long-running uptime consumer",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When result production outpaces these workers, FixedQueuePool creates each underlying queue.Queue without a maxsize, so SimpleQueueProcessingStrategy.submit keeps accepting messages and the backlog grows without bound",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When ResultsStrategyFactory.shutdown runs with queued work, FixedQueuePool.shutdown sets each OrderedQueueWorker.shutdown flag before calling queue.shutdown(immediate=False), leaving remaining queue entries unprocessed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_preserves_order_within_group only checks that five results exist, so the test passes despite potentially violating the strategy's per-group ordering guarantee",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_stats_reporting can observe total_items == 0 and fail when the worker drains the queues before the immediate get_stats() call, even though all ten submissions were accepted and processed correctly",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_concurrent_processing_across_groups only verifies eventual completion and group names, so a serial implementation would satisfy this test",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_thread_queue_parallel_concurrent_subscriptions only waits for both calls to finish, so it passes without detecting any overlap and does not validate its concurrency contract",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_thread_queue_parallel_shutdown assertion checks only that the pool reference is cleared, so all five items can be discarded while the test passes",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "test_thread_queue_parallel_error_handling assertion rejects the behavior where OrderedQueueWorker.run catches the exception but still calls complete_offset in finally for both offsets",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "A gap in submitted offsets stalls commits permanently - when a partition has an offset that is never submitted, the range(start, max_offset + 1) loop in get_committable_offsets breaks at the gap and highest_committable never advances past it",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Error-handling test asserts no commit, contradicting its docstring and the production code - the assertion len(committed_offsets) == 0 or test_partition not in committed_offsets contradicts the docstring that says errors must not block commits for other messages",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/103633": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Test 'Should deny on explicit cache deny entry' does not verify denial cache takes precedence because permission-cache entry itself denies dash1 - should store true for dashboards:uid:dash1 so test fails if denial cache is ignored",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "userPermDenialCacheKey produces same key when resource identifiers differ only in underscore placement between name and parent, causing incorrect denial of different dashboard/folder combinations - need unambiguous encoding like length prefixes or escaping",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Cached denial persists for shortCacheTTL (30s) after resource or permission is created, blocking creator from accessing resource they just created - need invalidation for resource/permission mutations or avoid caching such denials",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "List treats cached scope map as complete without database fallback for stale permissions, so newly created resources are omitted until cache expires - need to refresh permissions or bypass cache for listing",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "permDenialKey omits IdentityType so user and service account with same UID share denial entry, causing denial for one identity to incorrectly deny the other - need to include identity type in denial key",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "userPermDenialCacheKey maps distinct (Name, ParentFolder) pairs to same denial entry when names or folders contain underscores - need unambiguous encoding like structured key or length-prefixing",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/106778": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Prom-based pause, delete and silence abilities are granted, but the menu and handlers still require rulerRule - on the list view rulerRule is undefined, so canPause, canDelete and canSilence now come from useGrafanaPromRuleAbilities but the render path still gates those items on the ruler rule",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Grafana prom abilities grant Duplicate to non-Grafana rules when called with skipToken - when AlertRuleMenu renders a data-source rule, it calls useGrafanaPromRuleAbilities(skipToken, ...), so rule is undefined and useIsGrafanaPromRuleEditable returns loading:false, making MaybeSupported true and duplicateSupported becomes true incorrectly",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When GrafanaRuleListItem supplies only promRule, canDelete becomes true from grafanaDeleteAbility, but AlertRuleMenu still renders Delete only when rulerRule exists, so users with delete permission see no delete action for list-view Grafana rules",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When GrafanaRuleListItem supplies only promRule, canSilence becomes true from the Grafana ability hook, but the V2 caller's showSilenceDrawer branch requires a rulerRule; clicking Silence therefore sets state without rendering any drawer",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a Grafana-managed Prometheus rule is rendered by GrafanaRuleListItem without a rulerRule, AlertRuleMenu can set canPause from grafanaPauseAbility but the pause item is still gated by rulerRuleType.grafana.rule(rulerRule), so users with pause permission have no pause action in the list",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When AlertRuleMenu is rendered for a prom-only list item, useRulerRuleAbilities still invokes useAllRulerRuleAbilities, which invokes useIsRuleEditable and its discoverDsFeatures query even though rulerRule is undefined, keeping ruler feature-discovery requests on the alert list",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a Grafana Prometheus rule is evaluated while its folder is still loading or its folder UID is invalid, useAllGrafanaPromRuleAbilities grants Silence as soon as the user has the global AlertingInstanceCreate permission, exposing a silence action that the previous useCanSilence deliberately withheld unless the rule's folder existed and had finished loading",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a Grafana Prometheus alerting rule is rendered by RuleActionsButtons, useAllGrafanaPromRuleAbilities enables Silence, so AlertRuleMenu invokes handleSilence; that component only mounts SilenceGrafanaRuleDrawer when rulerRuleType.grafana.alertingRule(rule) is true, which is false for the prom-only list item, so clicking Silence has no effect",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a Grafana alert is rendered through GrafanaRuleListItem, RuleActionsButtons receives only promRule, so clicking the exposed Silence action only sets showSilenceDrawer; its render condition checks rulerRuleType.grafana.alertingRule(rule) and never mounts SilenceGrafanaRuleDrawer",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Missing React key on GrafanaRuleListItem in the filtered list - when FilterView renders Grafana rules inside rules.map, the new GrafanaRuleListItem has no key, causing React warnings and potential list item matching issues",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Pause, Export, Restore and DeletePermanently are gated on alertingRule, which excludes Grafana recording rules - useAllGrafanaPromRuleAbilities uses prometheusRuleType.grafana.alertingRule(rule) instead of isGrafanaManagedAlertRule which is true for all Grafana rules",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Federated-rule check dropped from the legacy useAllAlertRuleAbilities path - useAllAlertRuleAbilities used to compute isFederated = isFederatedRuleGroup(rule.group) but now delegates to useAllRulerRuleAbilities which hardcodes isFederated = false, so callers with a federated Mimir group no longer treat the rule as immutable",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/107534": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Shard path interpolates each query twice - when runShardSplitQuery maps targets through datasource.applyTemplateVariables, it then passes them to splitQueriesByStreamShard which calls runSplitQuery for every sub-request, and runSplitQuery interpolates again at querySplitting.ts:299, causing duplicate interpolation for each shard request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/76186": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "TestLogger.FromContext returns a fresh TestLogger instead of returning the original instance or a copy sharing the recorded Logs state, causing assertions on the original logger to see zero calls and messages when code under test logs through FromContext",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ContextualLoggerMiddleware.QueryData dereferences req without nil check, causing panic when caller passes nil request, unlike LoggerMiddleware.QueryData which explicitly accepts nil requests",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ContextualLoggerMiddleware.CallResource dereferences req without nil check, causing panic when caller passes nil request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ContextualLoggerMiddleware.CheckHealth dereferences req without nil check, causing panic when caller passes nil request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ContextualLoggerMiddleware.CollectMetrics dereferences req without nil check, causing panic when caller passes nil request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/79265": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When CreateOrUpdateDevice rejects a new device with ErrDeviceLimitReached, tagDeviceUI has already inserted its cache key before the database call, so the returned authentication error is bypassed on the next request from the same device and the request is accepted without rechecking the limit. Move the cache insertion after a successful store operation, or remove the key when tagging fails.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When frontend code reads config.anonymousDeviceLimit after boot config merging, GrafanaBootConfig exposes the property with the inferred static type undefined, so the numeric limit supplied by the backend cannot be used without a type error or narrowing that can never succeed. Annotate the property as number | undefined so runtime boot data and the GrafanaConfig contract are represented correctly.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When multiple requests call AnonDBStore.CreateOrUpdateDevice concurrently while the active count is below deviceLimit, each request can observe the same count and then insert a device, so the configured cap is exceeded during concurrent anonymous authentication. Make the count-and-create operation atomic with a transaction, database constraint, or serialized locking strategy.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the first updateDevice execution returns a retryable database-lock error, WithDbSession invokes the callback again with args already prefixed by query, so this line prefixes it a second time and the retry executes with the wrong argument count. The lock retry then returns an error instead of applying the update. Build the argument slice once outside the callback or reset it before each execution.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Non-atomic count-then-insert lets concurrent new devices exceed the limit - CreateOrUpdateDevice calls CountDevices and then runs a separate INSERT upsert, with no transaction, lock or conditional insert between them.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Device tagging moved onto the authentication request path - Authenticate now calls a.anonDeviceService.TagDevice(ctx, ...) synchronously instead of running in a goroutine with its own 2-minute timeout, causing every anonymous request whose device is not in the local cache to wait on a COUNT query and an upsert, or on the updateDevice UPDATE.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/80329": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When more than one batch is needed, CleanAnnotations applies the same LIMIT ... OFFSET cfg.MaxCount after each prior batch has been deleted, so untilDoneOrCancelled skips the next batch of remaining rows and leaves annotations above the configured maximum. For example, with keep=3 and batch=1 it deletes ranks 4, 5, 7, ... rather than all rows after rank 3. Remove the offset for subsequent batches or fetch the IDs to delete once per cleanup.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Integration test only checks final row counts, so it would still pass if cleanup reverted to the original subquery-based DELETE. SQLite does not reproduce the concurrent MySQL deadlock that motivates this change, and this test creates no concurrent writer or assertion on the separate fetch/delete operations; a regression in the split-query behavior therefore passes CI.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The 40,003 fixtures are distributed across the three annotation types, so each cleanup query receives only about 13,334 IDs. That is below SQLite >= 3.32's 32,766/32,767-variable limit. Consequently, replacing the literal-ID workaround with a placeholder list would still pass, so the claimed variable-limit regression is not exercised.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When SQLite is configured with a very large AnnotationCleanupJobBatchSize, deleteByIDs interpolates every fetched ID into one IN statement, while readAnnotationSettings accepts any positive int64 and the documented setting has no upper bound. A sufficiently large batch exceeds SQLite's SQL length/parser limits, so cleanup errors or exhausts memory instead of progressing.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When AnnotationCleanupJobBatchSize exceeds the database driver's parameter limit on MSSQL (2100) or PostgreSQL/MySQL (typically 65535), deleteByIDs sends one placeholder per fetched ID and the delete fails with a bind/parameter-count error. Cleanup then stops with an error instead of deleting the configured batch.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When clean takes longer than one minute, time.Ticker queues a tick while the synchronous cleanup is running, so Run starts the next clean immediately after the prior one returns. Because each run has a nine-minute timeout and includes database cleanup jobs, sustained slow work makes cleanup runs effectively back-to-back and adds avoidable database load.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Cleanup ticker interval cut from 10 minutes to 1 minute, which changes the schedule for every cleanup job, not only annotations. That includes temp files, expired sessions, and the annotation cleanup. Cleanup then runs 10 times as often, which adds database load.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Debug logging at Error level on the normal path in CleanAnnotations (time-based). r.log.Error is called twice per batch, before and after the delete, even when the batch succeeds and err is nil. The first call dumps the full ids slice, which can hold thousands of IDs.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Debug logging at Error level on the normal path in CleanAnnotations (max-count). r.log.Error fires on every batch, including successful ones. Successful cleanups get logged as errors, and the full ID list is written out each time.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Debug logging at Error level on the normal path in CleanOrphanedAnnotationTags. r.log.Error fires on every batch regardless of outcome. Routine cleanups produce error-level entries, and the full ID slice gets logged.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/90045": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "DualWriterMode3.Update passes the original objInfo to the asynchronous legacy update, so an UpdatedObjectInfo that is context-dependent or single-use can be evaluated again and produce a different object from the one committed to unified storage",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Async legacy writes derive their context from the request context, so they are cancelled when the request ends - the goroutine builds its context with context.WithTimeoutCause(ctx, ...) from the request ctx, so d.Legacy.Create usually sees a cancelled context and fails or aborts",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the unified-store create or update fails, DualWriterMode3 records that storage operation in the legacy metric, so failure counts and latency are attributed to the wrong backend - should use recordStorageDuration for startStorage measurements",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the REST request context is canceled as the handler returns, each asynchronous legacy write derives its timeout context from that already-canceled context, so the legacy operation is canceled immediately instead of receiving the intended ten-second window",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the asynchronous legacy delete-collection finishes, DualWriterMode3.DeleteCollection records its result in the storage metric instead of the legacy metric, so legacy latency and failures are attributed to unified storage",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "DualWriterMode3.Create test only checks the unified-store result, so it still passes if the asynchronous Legacy.Create is never started, receives the wrong arguments, or fails - same issue in TestMode3_Update, TestMode3_Delete, and TestMode3_DeleteCollection",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Mode 3 success cases return immediately after asserting obj without synchronizing or asserting the asynchronous legacy operation, so tests still pass if the legacy write is skipped or fails",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Mode-3 setup runs doPlaylistTests which exercises the same CRUD/read assertions used for every mode but never proves the mode-3-specific storage contract that Kubernetes reads come from unified storage and writes are replicated asynchronously to legacy storage",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Mode-3 setup runs doPlaylistTests which immediately calls the legacy API after Kubernetes creates and updates, but mode 3 performs those legacy writes in goroutines and returns before they complete, so legacy list/get assertions can observe stale data",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/90939": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When multiple non-development requests arrive while the cache is empty, GetWebAssets waits for the first loader and then performs the file/CDN load again instead of using the cache that was just populated, causing redundant serialized I/O and latency. Need to re-read entryPointAssetsCache after acquiring the write lock and return it for non-development environments before loading.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/94942": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "enableSqlExpressions ignores the feature flag and always returns false - the function computes enabled := !h.features.IsEnabledGlobally(FlagSqlExpressions) but returns false in both branches, making the flag have no effect",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Stub DB makes the SQL parser and executor fail with a generic error - every DB method (TablesList, RunCommands, QueryFramesInto) returns errors.New(\"not implemented\"), causing callers like UnmarshalSQLCommand to fail",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/grafana/grafana/pull/97529": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When two callers miss GetIndex for the same key concurrently, bleveBackend.BuildIndex builds both indexes before either reaches the lock, then the assignment leaves the cache pointing at whichever finishes last while each caller retains a different index; subsequent writes/searches can diverge and one completed index is discarded. Need per-key in-flight coordination or serialization of same-key builds before constructing the index.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "TotalDocs reads b.cache without cacheMu while builds now write it concurrently, causing a data race since BuildIndex only holds the lock briefly for cache insertion while TotalDocs ranges over b.cache with no lock.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When GRAFANA_TEST_DB=postgres, the test is skipped before InitializeModuleServer and the metrics request run, so a regression in the instrumentation server path for Postgres still passes CI.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When a resource is written after its ListIterator snapshot during startup but before searchSupport.init calls WatchWriteEvents, the SQL backend starts polling from the latest resource version at that later point, so the write is never replayed and the search index remains stale.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Removing the BuildIndex lock allows duplicate concurrent builds of the same key - when two requests miss the cache for the same NamespacedResource, both reach getOrCreateIndex and then BuildIndex, and the last one silently overwrites b.cache[key], leaking the other index.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Removing per-request Init checks drops the stopping/stopped gate - server.Stop sets s.initErr to 'service is stopping' or 'service is stopped' but those values were only observed because every RPC called s.Init(ctx) and returned initErr. Now handlers keep serving after Stop.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Reordered init now starts the watcher only after the full index build - s.search.init runs before s.initWatcher(), and NewResourceServer blocks on it synchronously. When indexing many namespaces is slow, server construction and process startup stalls for the whole build.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/32918": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Cleanup is registered against the literal alias \"alias\", but the provider created has alias idp-alias-<i>, so the 20 providers created by this test are not removed and can cause cleanup failures or leak state into later tests",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Cleanup uses the nonexistent literal alias \"alias\" instead of the newly created provider's idp-alias-20 alias, causing the provider to be left behind or cleanup to fail on null lookup",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Login-cache skip decision tests the org-aware wrapper instead of the underlying model, so it can miss a real change in login eligibility when an IDP is linked to a disabled organization and an update makes it ineligible for login",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/33832": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "readLength() accepts indefinite-length encoding but readSequence() and readNext() don't implement end-of-contents handling, causing empty sequences for 0x80-encoded signatures and NegativeArraySizeException for indefinite-length children instead of IOException",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Decoder compares only low five tag-number bits, accepting non-universal and incorrectly constructed/primitive tags (e.g. 0x70 as sequence or 0x82 as integer) instead of rejecting malformed DER signatures",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "getBouncyCastleProvider() returns default KeyStore provider (normally SUN) instead of Bouncy Castle provider, causing callers to fail resolving BC-only algorithms or silently use wrong implementation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "DER INTEGER parsed as signed BigInteger doesn't reject negative values or values exceeding curve component width, silently transforming malformed components into different R/S values",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "readInteger() accepts negative values and non-minimal encodings (e.g. 02 02 00 01 or INTEGER beginning with FF), allowing non-canonical values to be normalized into different valid-looking R||S signatures",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "readInteger() doesn't verify INTEGER TLV consumes entire decoder input, accepting malformed sequence elements like 02 02 01 00 as value 1 while ignoring extra bytes",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Long-form length parser accepts non-DER encodings including long form for values below 128 and leading zero length octets (e.g. 0x82 00 01)",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "readSequence() doesn't verify input stream is exhausted after consuming declared sequence length, accepting DER sequences with trailing arbitrary bytes",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Provider accepts parsed integers without requiring DER input to be fully consumed, treating valid R/S sequences with trailing bytes as valid signatures",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test fixture creates one EC key without parameters (P-256) but tests claim to cover ES256, ES384, ES512 which require P-256, P-384, P-521 respectively, leaving ES384/ES512 conversion untested",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test assertion only checks decoder and encoder are mutually consistent, not that re-encoded signature equals JCA-produced DER signature or verifies with public key",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Providers with same priority (DefaultCryptoProvider, FIPS1402Provider, WildFlyElytronProvider all return 200) are silently selected based on ServiceLoader encounter order instead of being rejected or resolved deterministically",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "integerToBytes silently truncates oversized r/s values by keeping only low-order qLength bytes without checking dropped bytes are zero",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/36880": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Cleanup listener is gated on V1 flag, not on V2 being off - When both ADMIN_FINE_GRAINED_AUTHZ and ADMIN_FINE_GRAINED_AUTHZ_V2 are enabled, a ClientRemovedEvent still enters this branch. management(...) then returns MgmtPermissionsV2, and clients().setPermissionsEnabled(client, false) throws UnsupportedOperationException in ClientPermissionsV2, so deleting a client fails",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "getClientsWithPermission returns the all-clients resource name as a client id - When an all-clients permission is granted, findByType(server, CLIENTS_RESOURCE_TYPE) also returns the type-level resource. That resource is named 'Clients' and has type 'Clients', so granted.add(resource.getName()) adds the literal 'Clients' to the result",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "canExchangeTo throws UnsupportedOperationException on a reachable token-exchange path - When V2 is enabled and a client performs token exchange, AbstractTokenExchangeProvider calls AdminPermissions.management(...).clients().canExchangeTo(client, targetClient, token). ClientPermissionsV2.canExchangeTo throws UnsupportedOperationException, so the exchange returns a 500 instead of a deny or allow decision",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "canView() ignores the MANAGE scope, unlike canView(ClientScopeModel) - When an admin holds only a MANAGE permission on all clients, canView() returns false because it checks only canViewClientDefault() or hasPermission(VIEW). canView(ClientScopeModel) accepts VIEW or MANAGE, so the two are inconsistent",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/36882": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Feature flag for ROLLING_UPDATES is only applied after the updateStrategy == null early return, so when updateStrategy is null the feature is never enabled",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "testCacheMaxCount(null) expects eventuallyRollingUpgradeStatus but the generated deployment lacks the ROLLING_UPDATES feature flag required by the newly gated update-compatibility commands",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The feature spec should be initialized before the early return (while leaving updateSpec unset for the default strategy) to ensure ROLLING_UPDATES is enabled for all test cases",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/37038": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "When the V2 authorization evaluator is active, GroupPermissionsV2#getGroupIdsWithViewPermission() adds groupResource.getId() (authorization resource IDs) instead of group model IDs, while the user provider filters memberships by UserGroupMembershipEntity.groupId, causing brute-force searches for admins with group-scoped permissions to return no users",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "getGroupIdsWithViewPermission() in the V2 evaluator returns groupResource.getId() which is the authorization resource's internal UUID, not the Keycloak GroupModel ID (stored in resource.getName()), causing JPA user queries to fail for scoped callers",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "V2 group resources are looked up by findByName(server, groupId) and created with group ID as resource name, but getGroupIdsWithViewPermission returns the store ID instead, causing admins with view-members permission on a group to get no users from that group",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "canManage() evaluates both VIEW and MANAGE scopes, but is used by GroupsResource.requireManage() for mutating operations, allowing callers with only global VIEW scope to create/update/delete groups - should restrict to AdminPermissionsSchema.MANAGE only",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "getGroupIdsWithViewPermission() iterates resourceStore.findByType(GROUPS_RESOURCE_TYPE) but per-group resources are created with no type set, so only the all-groups resource is found and per-group permissions are missed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "testManageGroupMembership test never verifies that group-specific MANAGE_MEMBERSHIP scope is required - the only negative assertion uses 'no-such' before any permission exists, and an implementation ignoring group permissions would still pass",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "hasPermission treats its groupId argument as a resource name via resourceStore.findByName(server, groupId), but the caller passes groupResource.getId() instead of groupResource.getName(), causing lookup to miss group-specific resources",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "UnsupportedOperationException overrides for isPermissionsEnabled, resource, getPermissions, and setPermissionsEnabled are reachable through GroupResource management-permissions endpoint when V2 is enabled, causing requests to fail instead of returning controlled responses",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/37429": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Account UI's i18next instance uses default interpolation without ICU/MessageFormat plugin, so {0}, {1}, {2} placeholders are rendered literally instead of being interpolated (i18next requires {{0}}-style interpolation)",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The {2,choice,...} expression is not evaluated by i18next, causing the validation message to display the template instead of actual values",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "ICU choice expression removal from value before sanitization allows malicious HTML in choice branches like {0,choice,0#<img src=x onerror=...>|1#safe} to bypass validation",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Admin UI message placeholders changed from i18next {{0}} form to Java MessageFormat {n} syntax, causing literal rendering instead of substitution",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Lithuanian resource file contains Italian text instead of Lithuanian translation for TOTP setup step (totpStep1)",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Lithuanian login resource file contains Italian text (Installa..., sul tuo cellulare) instead of Lithuanian translation for loginTotpStep1",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Diff-trimming indices can overlap and throw StringIndexOutOfBoundsException when sanitized text differs by inserting/removing repeated characters",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "English bundle path derived by regex on absolute path using replaceAll(\"resources-community\", \"resources\") rewrites any parent directory containing that text",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "If derived _en file does not exist, verifySafeHtml throws RuntimeException",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/37634": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Client-credentials flow never sets Constants.GRANT_TYPE on its ClientSessionContext, causing the encoder to receive fallback UNKNOWN grant and getShortcutByGrantType returns null, throwing IllegalStateException for every client-credentials request",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "isAccessTokenId matcher has inverted condition and wrong offsets - substring(3, 5) extracts wrong slice spanning token-type and grant-type shortcuts, and the condition is negated so correct IDs never match",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "AccessTokenContext validates grantType a second time instead of validating rawTokenId, so a context with null raw ID is accepted and encodeTokenId concatenates it as literal string 'null'",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Factory accepts any shortcut length from OAuth2 grant providers but encoder/parser contract reserves exactly two characters - custom grants with different length shortcuts will produce access-token IDs that cannot be decoded",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Lazy registration path in getShortcutByGrantType does not enforce uniqueness invariant checked in postInit - newly deployed grant reusing existing shortcut overwrites forward map while leaving existing grant in reverse map",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Second lazy registration path in getGrantTypeByShortcut has same unchecked collision problem - newly discovered grant can replace forward mapping without reconciling old reverse mapping",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Test catches generic Exception instead of specific IllegalArgumentException for unknown grant shortcut, allowing unrelated runtime failures like NullPointerException to be swallowed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/38446": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "Returning a federated credential makes the form authenticator's exhaustion path call removeStoredCredentialById with an ID that belongs to the user-storage provider, but UserCredentialManager.removeStoredCredentialById only removes through the federated/local credential store and does not delegate deletion to the provider's CredentialInputUpdater, leaving federated recovery credentials after all codes are consumed",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When getCredential returns a credential from getFederatedCredentialsStream(), the exhaustion path still calls removeStoredCredentialById() which targets the local/federated database store and does not delegate deletion to the external CredentialInputUpdater, leaving exhausted recovery-code credentials in user storage",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Federated validation only checks whether the submitted code is present and leaves the serialized list unchanged, allowing every successful login against this provider to reuse the same recovery code indefinitely instead of consuming the matched code",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When the federated updater returns false, a local credential is created without accounting for an existing federated recovery credential, causing newly generated local codes to be ignored since RecoveryAuthnCodesUtils.getCredential() always prefers the federated credential",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The getCredentials implementation never adds myUser.hashedPassword, so password enumeration/management for a user with this provider will omit the password after this change",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "A malformed or incompatible federated recovery credential is converted into an apparently credential-less user by discarding the exception and continuing with an empty stream, silently disabling the recovery-code factor",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "Adding recovery codes to isConfiguredFor makes this provider report the credential as configured, but disableCredentialType still only clears OTP and getDisableableCredentialTypesStream still omits recovery codes, leaving myUser.recoveryCodes intact after delete operations",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "When user.credentialManager().updateCredential(recoveryCodesCredential) returns true, createRecoveryCodesCredential skips recoveryCodeCredentialProvider.createCredential which is what deletes the user's existing local RecoveryAuthnCodesCredentialModel, leaving stale local credentials behind",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  },
+  "https://github.com/keycloak/keycloak/pull/40940": {
+    "angada-calib-20261120T1416Z-r1": [
+      {
+        "text": "The reader thread is never joined (and its exceptions are only recorded asynchronously), so the assertion can run immediately after deletion before the thread has performed any read. This allows the test to pass without exercising the concurrent path, and the thread can continue using managedRealm after the test has returned and its fixture is torn down. Signal the reader to stop, then join it (propagating an interruption/failure) before asserting the collected exceptions.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "GroupModel.getSubGroupsCount() returns null when the backing group was concurrently deleted, but the GroupModel contract explicitly guarantees that this method never returns null. Consumers can receive a null count (and any unboxing or count-dependent logic can fail), and the REST representation will serialize a null subgroup count instead of a count. Preserve the non-null contract for the missing-model case, for example by returning 0L.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      },
+      {
+        "text": "The three getSubGroupsStream(...) overloads at lines 256, 262 and 268 still call modelSupplier.get().getSubGroupsStream(...) directly without null checking, causing NPE when a group is deleted after the cache read but before the lazy delegate loads.",
+        "path": null,
+        "line": null,
+        "source": "extracted"
+      }
+    ]
+  }
+}

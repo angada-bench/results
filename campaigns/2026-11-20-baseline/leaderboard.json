@@ -1,0 +1,210 @@
+{
+  "source": "offline/analysis/benchmark_dashboard.json in https://github.com/withmartian/code-review-benchmark at commit e616e849755441da38f18bf3adba2c9583b03803",
+  "source_commit_date": "2026-08-30",
+  "judge": "anthropic_claude-opus-4-5-20251101",
+  "profile": "core",
+  "beta": 2.0,
+  "note": "Rows are Martian's own runs of each tool, copied as published in that file. Hidden tools are left out as Martian's dashboard does.",
+  "rows": [
+    {
+      "tool": "Qodo Extended",
+      "f2": 65.1,
+      "precision": 67.1,
+      "recall": 64.6,
+      "tp": 102,
+      "fp": 50,
+      "fn": 56,
+      "prs": 50
+    },
+    {
+      "tool": "Cubic v2",
+      "f2": 64.9,
+      "precision": 61.5,
+      "recall": 65.8,
+      "tp": 104,
+      "fp": 65,
+      "fn": 54,
+      "prs": 50
+    },
+    {
+      "tool": "Augment",
+      "f2": 64.0,
+      "precision": 59.5,
+      "recall": 65.2,
+      "tp": 103,
+      "fp": 70,
+      "fn": 55,
+      "prs": 50
+    },
+    {
+      "tool": "Qodo v2",
+      "f2": 60.6,
+      "precision": 55.4,
+      "recall": 62.0,
+      "tp": 98,
+      "fp": 79,
+      "fn": 60,
+      "prs": 50
+    },
+    {
+      "tool": "copilot-v2",
+      "f2": 58.0,
+      "precision": 38.5,
+      "recall": 66.5,
+      "tp": 105,
+      "fp": 168,
+      "fn": 53,
+      "prs": 50
+    },
+    {
+      "tool": "Gemini",
+      "f2": 52.8,
+      "precision": 45.3,
+      "recall": 55.1,
+      "tp": 87,
+      "fp": 105,
+      "fn": 71,
+      "prs": 50
+    },
+    {
+      "tool": "GitLab Duo Code Review",
+      "f2": 52.7,
+      "precision": 53.5,
+      "recall": 52.5,
+      "tp": 83,
+      "fp": 72,
+      "fn": 75,
+      "prs": 50
+    },
+    {
+      "tool": "Sourcery",
+      "f2": 51.5,
+      "precision": 41.0,
+      "recall": 55.1,
+      "tp": 87,
+      "fp": 125,
+      "fn": 71,
+      "prs": 50
+    },
+    {
+      "tool": "Greptile v4",
+      "f2": 51.2,
+      "precision": 50.9,
+      "recall": 51.3,
+      "tp": 81,
+      "fp": 78,
+      "fn": 77,
+      "prs": 50
+    },
+    {
+      "tool": "CodeRabbit",
+      "f2": 51.1,
+      "precision": 32.6,
+      "recall": 59.5,
+      "tp": 94,
+      "fp": 194,
+      "fn": 64,
+      "prs": 50
+    },
+    {
+      "tool": "Macroscope",
+      "f2": 50.8,
+      "precision": 61.1,
+      "recall": 48.7,
+      "tp": 77,
+      "fp": 49,
+      "fn": 81,
+      "prs": 50
+    },
+    {
+      "tool": "Cursor Bugbot",
+      "f2": 48.6,
+      "precision": 56.9,
+      "recall": 46.8,
+      "tp": 74,
+      "fp": 56,
+      "fn": 84,
+      "prs": 50
+    },
+    {
+      "tool": "Claude Code (CLI)",
+      "f2": 47.7,
+      "precision": 46.3,
+      "recall": 48.1,
+      "tp": 76,
+      "fp": 88,
+      "fn": 82,
+      "prs": 50
+    },
+    {
+      "tool": "Devin",
+      "f2": 44.8,
+      "precision": 69.1,
+      "recall": 41.1,
+      "tp": 65,
+      "fp": 29,
+      "fn": 93,
+      "prs": 50
+    },
+    {
+      "tool": "Kodus",
+      "f2": 41.5,
+      "precision": 59.2,
+      "recall": 38.6,
+      "tp": 61,
+      "fp": 42,
+      "fn": 97,
+      "prs": 50
+    },
+    {
+      "tool": "CodeAnt",
+      "f2": 40.9,
+      "precision": 40.1,
+      "recall": 41.1,
+      "tp": 65,
+      "fp": 97,
+      "fn": 93,
+      "prs": 50
+    },
+    {
+      "tool": "Baz",
+      "f2": 40.5,
+      "precision": 61.5,
+      "recall": 37.3,
+      "tp": 59,
+      "fp": 37,
+      "fn": 99,
+      "prs": 50
+    },
+    {
+      "tool": "Claude Code",
+      "f2": 38.9,
+      "precision": 43.2,
+      "recall": 38.0,
+      "tp": 60,
+      "fp": 79,
+      "fn": 98,
+      "prs": 50
+    },
+    {
+      "tool": "KG",
+      "f2": 18.4,
+      "precision": 54.3,
+      "recall": 15.8,
+      "tp": 25,
+      "fp": 21,
+      "fn": 133,
+      "prs": 50
+    },
+    {
+      "tool": "Graphite",
+      "f2": 9.3,
+      "precision": 100.0,
+      "recall": 7.6,
+      "tp": 12,
+      "fp": 0,
+      "fn": 146,
+      "prs": 50
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "run": "on-g1",
+  "campaign": "2026-11-20-baseline",
+  "arm": "on",
+  "verifier": "on",
+  "generation": "g1",
+  "created_at_utc": "2026-11-20T12:58Z",
+  "derived_from": null,
+  "benchmark": {
+    "repo": "https://github.com/withmartian/code-review-benchmark",
+    "commit": "e616e849755441da38f18bf3adba2c9583b03803",
+    "mode": "offline",
+    "prs": 50
+  },
+  "judge": {
+    "model": "anthropic/claude-opus-4.5",
+    "board_judge": "anthropic_claude-opus-4-5-20251101",
+    "steps": [
+      "step2_extract_comments",
+      "step2_5_dedup_candidates",
+      "step3_judge_comments"
+    ]
+  },
+  "scoring": {
+    "profile": "core",
+    "beta": 2.0
+  },
+  "tool_key": "angada-calib-20261120T1258Z-r1",
+  "pins": {
+    "engine_commit": "ee6be46bd58a",
+    "reviewer_version": "v1.8.1",
+    "route_sha256": "75933b419623",
+    "renderer_commit": "e4c441449c79",
+    "render_policy_sha256": "b3ca1fca81c8"
+  },
+  "reviews_not_completed": [
+    "https://github.com/ai-code-review-evaluation/discourse-graphite/pull/3",
+    "https://github.com/keycloak/keycloak/pull/37038"
+  ],
+  "totals": {
+    "tp": 96,
+    "fp": 205,
+    "fn": 62,
+    "precision": 0.3189,
+    "recall": 0.6076,
+    "f1": 0.4183,
+    "f2": 0.5145
+  }
+}
