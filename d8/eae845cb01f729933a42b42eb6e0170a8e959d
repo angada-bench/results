@@ -1,0 +1,21 @@
+README.md
+  s_a3d490f07f1a26::t_0c23bf3ab4eaf5 3,5,7,11-12
+.gitignore
+  s_a3d490f07f1a26::t_cac9449ec62e0f 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d8eae845cb01f729933a42b42eb6e0170a8e959d",
+  "prompts": {},
+  "sessions": {
+    "s_a3d490f07f1a26": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "dce40130-5721-4848-8a41-7af324378cae",
+        "model": "claude-fable-5-2"
+      },
+      "human_author": "Kaustav Chakraborty <me@iamkaustav.com>"
+    }
+  }
+}
