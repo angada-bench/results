@@ -2,7 +2,7 @@
   "placeholder": false,
   "updated_at": "2026-11-20",
   "campaign": "2026-11-20-baseline",
-  "report": "campaigns/2026-11-20-baseline/REPORT.md",
+  "report": "report/REPORT.md",
   "tool": "angada",
   "self_run": true,
   "official_entry": false,
